@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBE+ | Study Energy Patch - Boost Your Style</title>
+    <title>VIBE+ | Study Energy Patch - VIP PRO MAX</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Thanh Menu -->
     <nav>
         <div class="logo">VIBE<span>+</span></div>
         <ul>
             <li><a href="#sanpham">Sản phẩm</a></li>
             <li><a href="#thanhphan">Thành phần</a></li>
-            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="#feedback">Đánh giá</a></li>
             <li><a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="content">
             <div class="flash-sale">
@@ -29,111 +27,104 @@
             </div>
             <h1>ENERGY <span>PATCH</span></h1>
             <p class="slogan">“Boost Your Style, Unbox Your Mind”</p>
-            <p class="description">Miếng dán năng lượng thế hệ mới. Tỉnh táo tức thì, tập trung 100% công suất học tập mà không lo cồn cào dạ dày.</p>
+            <p class="description">Miếng dán năng lượng thế hệ mới giúp bạn tập trung 100% công suất học tập, tỉnh táo tức thì mà không cần Cafein lỏng.</p>
             <a href="#sanpham" class="btn-buy-now">MUA NGAY (FREESHIP)</a>
         </div>
     </section>
 
-    <!-- 6 LOẠI SẢN PHẨM -->
     <section id="sanpham" class="products-section">
-        <h2 class="section-title">BỘ SƯU TẬP CHÍNH HÃNG</h2>
+        <h2 class="section-title">PHIÊN BẢN ĐƠN LẺ</h2>
         <div class="product-grid">
-            <!-- 1. Basic -->
+            <!-- Đổi tên file ảnh đúng: Basic.jpg, Black_White.jpg, monochrome.jpg, muted.jpg, Neutral.jpg, Pastel.jpg -->
             <div class="product-card">
-                <div class="badge">Best Seller</div>
-                <img src="basic.jpg" alt="Vibe Basic">
+                <img src="Basic.jpg" alt="Basic">
                 <h4>VIBE+ BASIC</h4>
-                <div class="price-box">
-                    <span class="old-p">150k</span> <span class="new-p">119k</span>
-                </div>
-                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart('Basic')">Thêm vào giỏ</button>
             </div>
-            <!-- 2. Neutral -->
             <div class="product-card">
-                <img src="neutral.jpg" alt="Vibe Neutral">
-                <h4>VIBE+ NEUTRAL</h4>
-                <div class="price-box"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
+                <img src="Black_White.jpg" alt="B&W">
+                <h4>BLACK & WHITE</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart('B&W')">Thêm vào giỏ</button>
             </div>
-            <!-- 3. B&W -->
             <div class="product-card">
-                <img src="bnw.jpg" alt="Vibe Black White">
-                <h4>VIBE+ B&W</h4>
-                <div class="price-box"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
+                <img src="monochrome.jpg" alt="Monochrome">
+                <h4>MONOCHROME</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart('Monochrome')">Thêm vào giỏ</button>
             </div>
-            <!-- 4. Combo -->
             <div class="product-card">
-                <div class="badge" style="background:#ff4757">Tiết kiệm</div>
-                <img src="basic.jpg" alt="Combo" style="filter: hue-rotate(45deg);">
-                <h4>COMBO 3 MÀU</h4>
-                <div class="price-box"><span class="old-p">450k</span> <span class="new-p">299k</span></div>
-                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
+                <img src="muted.jpg" alt="Muted">
+                <h4>MUTED NATURA</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart('Muted')">Thêm vào giỏ</button>
             </div>
-            <!-- 5. Pro -->
             <div class="product-card">
-                <img src="bnw.jpg" alt="Pro Focus" style="border: 2px solid gold;">
-                <h4>ULTRA FOCUS</h4>
-                <div class="price-box"><span class="old-p">180k</span> <span class="new-p">149k</span></div>
-                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
+                <img src="Neutral.jpg" alt="Neutral">
+                <h4>NEUTRAL BALANCED</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart('Neutral')">Thêm vào giỏ</button>
             </div>
-            <!-- 6. Night -->
             <div class="product-card">
-                <img src="neutral.jpg" alt="Night Owl" style="filter: contrast(1.5);">
-                <h4>NIGHT OWL</h4>
-                <div class="price-box"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
+                <img src="Pastel.jpg" alt="Pastel">
+                <h4>PASTEL SWEET</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart('Pastel')">Thêm vào giỏ</button>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 100px;">COMBO LIÊN KẾT SIÊU TIẾT KIỆM</h2>
+        <div class="product-grid">
+            <div class="product-card combo-special">
+                <div class="badge">X2 Năng Lượng</div>
+                <div class="combo-imgs"><img src="1.jpg" style="width:45%"><img src="2.jpg" style="width:45%"></div>
+                <h4>COMBO HỌC BÁ (1+2)</h4>
+                <div class="price-tag"><span class="old-p">300k</span> <span class="new-p">229k</span></div>
+                <button class="btn-add" onclick="addToCart('Combo 1+2')">Mua ngay</button>
+            </div>
+            <div class="product-card combo-special">
+                <div class="badge" style="background:#ff4757">Trendsetter</div>
+                <div class="combo-imgs"><img src="3.jpg" style="width:45%"><img src="4.jpg" style="width:45%"></div>
+                <h4>COMBO NGHỆ SĨ (3+4)</h4>
+                <div class="price-tag"><span class="old-p">300k</span> <span class="new-p">229k</span></div>
+                <button class="btn-add" onclick="addToCart('Combo 3+4')">Mua ngay</button>
+            </div>
+            <div class="product-card combo-special">
+                <div class="badge" style="background:gold; color:black">Vip Pro</div>
+                <div class="combo-imgs"><img src="5.jpg" style="width:45%"><img src="6.jpg" style="width:45%"></div>
+                <h4>COMBO TỔNG LỰC (5+6)</h4>
+                <div class="price-tag"><span class="old-p">300k</span> <span class="new-p">219k</span></div>
+                <button class="btn-add" onclick="addToCart('Combo 5+6')">Mua ngay</button>
             </div>
         </div>
     </section>
 
-    <!-- THÀNH PHẦN (Turning Features into Benefits) -->
     <section id="thanhphan" class="ingredients">
         <h2 class="section-title">GIẢI MÃ THÀNH PHẦN</h2>
         <div class="ingred-container">
-            <div class="ingred-item">
-                <i class="fas fa-leaf"></i>
-                <h3>Caffeine & Trà xanh</h3>
-                <p>Năng lượng "sạch", tỉnh táo mà không lo âu hay bồn chồn (jitters).</p>
-            </div>
-            <div class="ingred-item">
-                <i class="fas fa-brain"></i>
-                <h3>Taurine</h3>
-                <p>Cải thiện hiệu suất trí não, giúp bạn "power through" những giờ học căng thẳng.</p>
-            </div>
-            <div class="ingred-item">
-                <i class="fas fa-battery-full"></i>
-                <h3>Vitamin B Complex</h3>
-                <p>Duy trì sức bền bền bỉ suốt 8-12 tiếng, không gây sụt giảm năng lượng đột ngột.</p>
-            </div>
+            <div class="ingred-item"><i class="fas fa-bolt"></i><h3>Caffeine & Trà xanh</h3><p>Năng lượng sạch, tập trung sâu.</p></div>
+            <div class="ingred-item"><i class="fas fa-brain"></i><h3>Taurine</h3><p>Cải thiện hiệu suất trí não.</p></div>
+            <div class="ingred-item"><i class="fas fa-battery-full"></i><h3>Vitamin B</h3><p>Duy trì sức bền 8-12 tiếng.</p></div>
         </div>
     </section>
 
-    <!-- FEEDBACK -->
     <section id="feedback" class="feedback-section">
         <h2 class="section-title">KHÁCH HÀNG NÓI GÌ?</h2>
         <div class="review-grid">
-            <div class="review-card">
-                <p>"Dán cái là học bài tới sáng luôn bà ơi, xịn thực sự!"</p>
-                <b>- Nguyễn Văn A ⭐⭐⭐⭐⭐</b>
-            </div>
-            <div class="review-card">
-                <p>"Không còn lo đau dạ dày vì uống quá nhiều cafe nữa. Tuyệt vời!"</p>
-                <b>- Trần Thị B ⭐⭐⭐⭐⭐</b>
-            </div>
+            <div class="review-card"><p>"Dán cái là học bài tới sáng luôn bà ơi, xịn thực sự!"</p><b>- Nguyễn Văn A ⭐⭐⭐⭐⭐</b></div>
+            <div class="review-card"><p>"Màu Pastel đẹp xỉu, dán như phụ kiện thời trang."</p><b>- Trần Thị B ⭐⭐⭐⭐⭐</b></div>
         </div>
     </section>
 
-    <!-- Nút liên hệ nổi -->
     <div class="sticky-social">
         <a href="#" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
         <a href="#" class="social-btn tt"><i class="fab fa-tiktok"></i></a>
-        <a href="tel:0123456789" class="social-btn phone"><i class="fas fa-phone"></i></a>
+        <a href="tel:090" class="social-btn phone"><i class="fas fa-phone"></i></a>
+        <a href="#" class="social-btn zalo">Zalo</a>
     </div>
 
-    <footer>
-        <p>&copy; 2026 VIBE+ Official Store - Boost Your Style</p>
-    </footer>
+    <footer><p>&copy; 2026 VIBE+ Official Store - Nhóm VIP PRO MAX</p></footer>
 
     <script src="script.js"></script>
 </body>
