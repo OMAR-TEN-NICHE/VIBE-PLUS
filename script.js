@@ -17,3 +17,4 @@ function addToCart(name) {
 }
 
 window.onload = function () { startCountdown(7200); };
+    
