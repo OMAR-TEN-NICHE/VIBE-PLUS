@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBE+ | Study Energy Patch - VIP PRO MAX</title>
-    <!-- Font chữ hiện đại -->
+    <title>VIBE+ | Study Energy Patch - Boost Your Style</title>
     <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <!-- Icon cho các nút liên hệ -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Thanh Menu -->
     <nav>
         <div class="logo">VIBE<span>+</span></div>
         <ul>
-            <li><a href="#sanpham">Cửa hàng</a></li>
+            <li><a href="#sanpham">Sản phẩm</a></li>
             <li><a href="#thanhphan">Thành phần</a></li>
-            <li><a href="#feedback">Đánh giá</a></li>
-            <li><a href="tel:090xxxxxxx" class="btn-small"><i class="fas fa-phone"></i> Hotline</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="content">
             <div class="flash-sale">
@@ -28,120 +28,113 @@
                 <span id="countdown">02:00:00</span>
             </div>
             <h1>ENERGY <span>PATCH</span></h1>
-            <p class="slogan">“Tỉnh táo tức thì - Thống trị mùa thi”</p>
-            <p class="description">Công nghệ thẩm thấu qua da (Transdermal) giúp duy trì năng lượng bền bỉ suốt 8-12 tiếng. Không gây cồn cào dạ dày, không lo mất ngủ đột ngột.</p>
-            <a href="#sanpham" class="btn-buy">MUA NGAY - FREESHIP</a>
+            <p class="slogan">“Boost Your Style, Unbox Your Mind”</p>
+            <p class="description">Miếng dán năng lượng thế hệ mới. Tỉnh táo tức thì, tập trung 100% công suất học tập mà không lo cồn cào dạ dày.</p>
+            <a href="#sanpham" class="btn-buy-now">MUA NGAY (FREESHIP)</a>
         </div>
     </section>
 
-    <!-- 6 LOẠI SẢN PHẨM (GRID 3x2) -->
+    <!-- 6 LOẠI SẢN PHẨM -->
     <section id="sanpham" class="products-section">
-        <h2 class="section-title">6 PHIÊN BẢN ĐỘC QUYỀN</h2>
+        <h2 class="section-title">BỘ SƯU TẬP CHÍNH HÃNG</h2>
         <div class="product-grid">
-            <!-- Sản phẩm 1-6 (Lặp lại cấu trúc này) -->
+            <!-- 1. Basic -->
             <div class="product-card">
-                <div class="badge">Bán chạy</div>
-                <img src="1.jpg" alt="Basic Blue">
-                <h4>BASIC BLUE</h4>
-                <div class="price-tag">
+                <div class="badge">Best Seller</div>
+                <img src="basic.jpg" alt="Vibe Basic">
+                <h4>VIBE+ BASIC</h4>
+                <div class="price-box">
                     <span class="old-p">150k</span> <span class="new-p">119k</span>
                 </div>
-                <button class="add-to-cart">Thêm vào giỏ</button>
+                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
             </div>
+            <!-- 2. Neutral -->
             <div class="product-card">
-                <img src="2.jpg" alt="Neutral">
-                <h4>NEUTRAL SOFT</h4>
-                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="add-to-cart">Thêm vào giỏ</button>
+                <img src="neutral.jpg" alt="Vibe Neutral">
+                <h4>VIBE+ NEUTRAL</h4>
+                <div class="price-box"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
             </div>
+            <!-- 3. B&W -->
             <div class="product-card">
-                <img src="3.jpg" alt="Black White">
-                <h4>B&W CLASSIC</h4>
-                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="add-to-cart">Thêm vào giỏ</button>
+                <img src="bnw.jpg" alt="Vibe Black White">
+                <h4>VIBE+ B&W</h4>
+                <div class="price-box"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
             </div>
+            <!-- 4. Combo -->
             <div class="product-card">
-                <img src="1.jpg" alt="Limited">
-                <h4>LIMITED RED</h4>
-                <div class="price-tag"><span class="old-p">180k</span> <span class="new-p">149k</span></div>
-                <button class="add-to-cart">Thêm vào giỏ</button>
+                <div class="badge" style="background:#ff4757">Tiết kiệm</div>
+                <img src="basic.jpg" alt="Combo" style="filter: hue-rotate(45deg);">
+                <h4>COMBO 3 MÀU</h4>
+                <div class="price-box"><span class="old-p">450k</span> <span class="new-p">299k</span></div>
+                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
             </div>
+            <!-- 5. Pro -->
             <div class="product-card">
-                <img src="2.jpg" alt="Focus">
+                <img src="bnw.jpg" alt="Pro Focus" style="border: 2px solid gold;">
                 <h4>ULTRA FOCUS</h4>
-                <div class="price-tag"><span class="old-p">160k</span> <span class="new-p">129k</span></div>
-                <button class="add-to-cart">Thêm vào giỏ</button>
+                <div class="price-box"><span class="old-p">180k</span> <span class="new-p">149k</span></div>
+                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
             </div>
+            <!-- 6. Night -->
             <div class="product-card">
-                <img src="3.jpg" alt="Night">
+                <img src="neutral.jpg" alt="Night Owl" style="filter: contrast(1.5);">
                 <h4>NIGHT OWL</h4>
-                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="add-to-cart">Thêm vào giỏ</button>
+                <div class="price-box"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <button class="btn-add" onclick="addToCart()">Thêm vào giỏ</button>
             </div>
         </div>
     </section>
 
-    <!-- THÀNH PHẦN (Vip Pro) -->
+    <!-- THÀNH PHẦN (Turning Features into Benefits) -->
     <section id="thanhphan" class="ingredients">
         <h2 class="section-title">GIẢI MÃ THÀNH PHẦN</h2>
         <div class="ingred-container">
             <div class="ingred-item">
-                <i class="fas fa-bolt"></i>
-                <p><b>Caffeine & Trà xanh:</b> Năng lượng sạch, tập trung sâu, không lo âu.</p>
+                <i class="fas fa-leaf"></i>
+                <h3>Caffeine & Trà xanh</h3>
+                <p>Năng lượng "sạch", tỉnh táo mà không lo âu hay bồn chồn (jitters).</p>
             </div>
             <div class="ingred-item">
                 <i class="fas fa-brain"></i>
-                <p><b>Taurine:</b> Tăng cường hiệu suất trí não vượt trội.</p>
+                <h3>Taurine</h3>
+                <p>Cải thiện hiệu suất trí não, giúp bạn "power through" những giờ học căng thẳng.</p>
             </div>
             <div class="ingred-item">
-                <i class="fas fa-capsules"></i>
-                <p><b>Vitamin B Complex:</b> Cung cấp sức bền, không gây "sụp nguồn" đột ngột.</p>
+                <i class="fas fa-battery-full"></i>
+                <h3>Vitamin B Complex</h3>
+                <p>Duy trì sức bền bền bỉ suốt 8-12 tiếng, không gây sụt giảm năng lượng đột ngột.</p>
             </div>
         </div>
     </section>
 
     <!-- FEEDBACK -->
     <section id="feedback" class="feedback-section">
-        <h2 class="section-title">FEEDBACK TỪ HỌC VIÊN</h2>
-        <div class="feedback-container">
+        <h2 class="section-title">KHÁCH HÀNG NÓI GÌ?</h2>
+        <div class="review-grid">
             <div class="review-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"Dán cái là học bài thông đêm được luôn, màu đẹp như sticker ấy!"</p>
-                <b>- Lan Anh (FTU)</b>
+                <p>"Dán cái là học bài tới sáng luôn bà ơi, xịn thực sự!"</p>
+                <b>- Nguyễn Văn A ⭐⭐⭐⭐⭐</b>
             </div>
             <div class="review-card">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"Không bị say như uống cafe, cực kỳ tiện lợi cho mùa thi."</p>
-                <b>- Minh Quân (HUST)</b>
+                <p>"Không còn lo đau dạ dày vì uống quá nhiều cafe nữa. Tuyệt vời!"</p>
+                <b>- Trần Thị B ⭐⭐⭐⭐⭐</b>
             </div>
         </div>
     </section>
 
-    <!-- Nút liên hệ nổi (Zalo/TikTok/FB) -->
-    <div class="social-contact">
-        <a href="#" class="social-item fb"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-item tt"><i class="fab fa-tiktok"></i></a>
-        <a href="#" class="social-item zalo">Zalo</a>
+    <!-- Nút liên hệ nổi -->
+    <div class="sticky-social">
+        <a href="#" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn tt"><i class="fab fa-tiktok"></i></a>
+        <a href="tel:0123456789" class="social-btn phone"><i class="fas fa-phone"></i></a>
     </div>
 
     <footer>
-        <p>&copy; 2026 VIBE+ Official Store - Thiết kế bởi Nhóm VIP PRO MAX</p>
+        <p>&copy; 2026 VIBE+ Official Store - Boost Your Style</p>
     </footer>
 
-    <script>
-        // Copy script đếm ngược của bạn vào đây
-        function startTimer(duration, display) {
-            var timer = duration, hours, minutes, seconds;
-            setInterval(function () {
-                hours = parseInt(timer / 3600, 10);
-                minutes = parseInt((timer % 3600) / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-                display.textContent = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
-                if (--timer < 0) timer = duration;
-            }, 1000);
-        }
-        window.onload = function () { startTimer(7200, document.querySelector('#countdown')); };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-       
