@@ -1,107 +1,104 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBE+ | Miếng Dán Năng Lượng</title>
-    <link href="https://googleapis.com" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav>
-        <div class="logo">VIBE<span>+</span></div>
-        <ul>
-            <li><a href="#sanpham">Sản phẩm</a></li>
-            <li><a href="#thanhphan">Thành phần</a></li>
-            <li><a href="#feedback">Đánh giá</a></li>
-            <li><a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
-        </ul>
-    </nav>
+body {
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    background:#f5f5f5;
+}
 
-    <section class="hero">
-        <div class="flash-sale">⚡ FLASH SALE KẾT THÚC SAU: <span id="countdown">02:00:00</span></div>
-        <h1>ENERGY <span>PATCH</span></h1>
-        <p class="slogan">“Boost Your Style, Unbox Your Mind”</p>
-        <a href="#sanpham" class="btn-buy-now-shopee" style="display:inline-block; padding: 15px 50px; border-radius: 50px; text-decoration:none; margin-top:20px;">SĂN DEAL NGAY</a>
-    </section>
+/* NAV */
+nav {
+    display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    background:white;
+}
 
-    <section id="sanpham" class="products-section">
-        <h2 class="section-title">PHIÊN BẢN ĐƠN LẺ</h2>
-        <div class="product-grid">
-            <!-- Basic -->
-            <div class="product-card">
-                <div class="wishlist-heart" onclick="toggleLike(this, 'BASIC')"><i class="far fa-heart"></i></div>
-                <img src="Basic.jpg" alt="Basic" onclick="openProduct('VIBE+ BASIC', 'Caffeine, Vitamin B, Trà xanh', 'Tỉnh táo ổn định 8h.')">
-                <h4>VIBE+ BASIC</h4>
-                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <div class="shopee-btn-container">
-                    <button class="shopee-cart-btn" onclick="addToCart('Basic')"><i class="fas fa-cart-plus"></i></button>
-                    <button class="shopee-buy-btn" onclick="openCheckout('VIBE+ BASIC', '119.000đ')">Mua ngay</button>
-                </div>
-            </div>
-            <!-- Bạn có thể copy cụm product-card này cho B&W, Monochrome, Muted, Neutral, Pastel... tương tự -->
-        </div>
-        
-        <h2 class="section-title" style="margin-top: 80px;">COMBO TIẾT KIỆM</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="badge-combo" style="background:var(--gold); color:black; padding:2px 8px; border-radius:4px; position:absolute; top:15px; right:15px; font-weight:bold; font-size:12px;">X2 Năng Lượng</div>
-                <img src="1.jpg" alt="Combo" style="width:100%; border-radius:8px;">
-                <h4>COMBO HỌC BÁ (1+2)</h4>
-                <div class="price-tag"><span class="old-p">300k</span> <span class="new-p">229k</span></div>
-                <button class="shopee-buy-btn" onclick="openCheckout('COMBO HỌC BÁ', '229.000đ')" style="width:100%; height:45px">Mua ngay</button>
-            </div>
-        </div>
-    </section>
+.logo {color:#ee4d2d;font-weight:bold;}
 
-    <!-- Thành phần & Feedback -->
-    <section id="thanhphan" class="ingredients">
-        <h2 class="section-title">GIẢI MÃ THÀNH PHẦN</h2>
-        <div class="ingred-container">
-            <div class="ingred-item"><i class="fas fa-bolt"></i><h3>Caffeine</h3><p>Tỉnh táo tức thì.</p></div>
-            <div class="ingred-item"><i class="fas fa-brain"></i><h3>Vitamin B</h3><p>Sức bền trí não.</p></div>
-        </div>
-    </section>
+ul {display:flex;gap:20px;list-style:none}
 
-    <section id="feedback" class="feedback-section">
-        <h2 class="section-title">ĐÁNH GIÁ KHÁCH HÀNG</h2>
-        <div class="review-grid">
-            <div class="review-card"><p>"Học deadline tới sáng luôn!"</p><b>- Minh Anh ⭐⭐⭐⭐⭐</b></div>
-        </div>
-    </section>
+/* HERO */
+.hero {
+    background:linear-gradient(135deg,#ee4d2d,#ff7a5c);
+    color:white;
+    text-align:center;
+    padding:70px;
+}
 
-    <!-- CHECKOUT MODAL -->
-    <div id="checkoutModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeCheckout()">&times;</span>
-            <h2 style="color: #ee4d2d; margin-bottom: 20px;">ĐẶT HÀNG NHANH</h2>
-            <form id="orderForm" onsubmit="handleOrder(event)">
-                <div class="order-summary"><p>Sản phẩm: <strong id="orderItemName">...</strong></p><p>Tổng: <strong id="orderItemPrice">...</strong></p></div>
-                <div class="input-group">
-                    <input type="text" id="custName" placeholder="Họ và tên" required>
-                    <input type="tel" id="custPhone" placeholder="Số điện thoại" required>
-                    <textarea id="custAddress" placeholder="Địa chỉ giao hàng đầy đủ" required></textarea>
-                </div>
-                <div class="payment-methods">
-                    <p style="font-weight:bold; margin-bottom:5px;">Thanh toán qua:</p>
-                    <label class="pay-option"><input type="radio" name="payment" value="Momo" checked> MoMo</label>
-                    <label class="pay-option"><input type="radio" name="payment" value="Banking"> Ngân hàng</label>
-                </div>
-                <button type="submit" class="btn-confirm-order">XÁC NHẬN LÊN ĐƠN</button>
-            </form>
-        </div>
-    </div>
+.btn {
+    background:white;
+    color:#ee4d2d;
+    padding:10px 25px;
+    border-radius:20px;
+    text-decoration:none;
+}
 
-    <!-- Nút liên hệ góc màn hình -->
-    <div id="toast-container"></div>
-    <div class="sticky-social">
-        <a href="https://facebook.com" target="_blank" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
-        <a href="mailto:support@vibeplus.vn" class="social-btn email"><i class="fas fa-envelope"></i></a>
-        <a href="tel:090" class="social-btn phone"><i class="fas fa-phone"></i></a>
-    </div>
+/* PRODUCTS */
+.products {padding:40px;}
 
-    <script src="script.js"></script>
-</body>
-</html>  
-   
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card {
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    position:relative;
+    transition:0.3s;
+}
+
+.card:hover {
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card img {width:100%}
+
+.price {color:#ee4d2d;font-weight:bold}
+
+/* HEART */
+.heart {
+    position:absolute;
+    top:10px;
+    right:10px;
+    cursor:pointer;
+}
+
+/* BUTTON */
+button {
+    width:100%;
+    background:#ee4d2d;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:5px;
+}
+
+/* MODAL */
+.modal {
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background:white;
+    padding:20px;
+    width:300px;
+    margin:100px auto;
+}
+
+/* TOAST */
+#toast {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:black;
+    color:white;
+    padding:10px;
+    display:none;
+}
