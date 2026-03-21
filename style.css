@@ -151,90 +151,66 @@ nav a { color: white; text-decoration: none; }
     transform: scale(1.1) !important;
 }
 
-/* FEEDBACK STYLES */
-.feedback {
-    padding: 80px 5%;
-    background-color: #112240; /* Màu xanh đậm đồng nhất */
-    text-align: center;
-}
+<!-- FEEDBACK SECTION -->
+<section class="feedback">
+    <div class="feedback-wrapper">
+        <h2 class="section-title">What Our Viber's Say</h2>
+        <div class="feedback-row">
+            <div class="feedback-box">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"Stayed up all night for the deadline and still felt fresh!"</p>
+                <strong>- An Tran</strong>
+            </div>
+            <div class="feedback-box">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"The combo is such a steal. Love the Pastel design!"</p>
+                <strong>- Minh Nguyen</strong>
+            </div>
+            <div class="feedback-box">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p>"No jitters like coffee, just pure focus. 10/10."</p>
+                <strong>- Huy Hoang</strong>
+            </div>
+        </div>
+    </div>
+</section>
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
+<!-- FOOTER SECTION -->
+<footer>
+    <div class="footer-container">
+        <!-- Cột 1: Cảnh báo (Trải dài phía trên) -->
+        <div class="footer-warning">
+            <p><strong>WARNING:</strong> For topical use only. Do not use on damaged, broken, or irritated skin. Please read directions carefully prior to use. In the unlikely event of side effects or adhesive allergies, please cease use and seek medical advice. Pregnant or lactating women and anyone taking medication should consult their physician before use. Keep out of reach of children.</p>
+        </div>
 
-.feedback-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
+        <hr class="footer-divider">
 
-.feedback-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 215, 0, 0.1);
-}
+        <!-- Cột 2: Thông tin dàn hàng ngang -->
+        <div class="footer-row">
+            <div class="footer-col">
+                <h4>Manufacturer</h4>
+                <p>Product of Vietnam</p>
+                <p>Manufactured at <strong>TENNICHE CO., LTD</strong></p>
+                <p>Lot C-12, High-Tech Park, District 9, Ho Chi Minh City.</p>
+                <p class="small-text">License No: 456/2024/ATTP-XNCB</p>
+            </div>
 
-.feedback-item p {
-    font-style: italic;
-    margin: 15px 0;
-    font-size: 1.1rem;
-}
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📞 +84 (28) 38XX XXXX</p>
+                <p>📧 support@vibeplus.vn</p>
+                <p>🌐 <a href="https://facebook.com" target="_blank">Follow us on Facebook</a></p>
+            </div>
 
-.author {
-    color: var(--accent);
-    font-weight: bold;
-}
-
-/* FOOTER STYLES */
-footer {
-    background-color: #000;
-    padding: 60px 5% 30px;
-    color: #ccc;
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.warning-box {
-    background: rgba(255, 0, 0, 0.05);
-    border: 1px solid rgba(255, 0, 0, 0.2);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    text-align: justify;
-    font-size: 0.8rem;
-}
-
-.footer-main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    border-top: 1px solid #222;
-    padding-top: 40px;
-}
-
-.footer-col h4 {
-    color: var(--accent);
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    font-size: 1rem;
-}
-
-.footer-col p { margin: 8px 0; }
-.footer-col a { color: #fff; text-decoration: none; }
-.footer-col a:hover { color: var(--accent); }
-
-.license { font-size: 0.75rem; color: #666; margin-top: 15px !important; }
-.disclaimer { font-weight: bold; color: #888; margin-top: 20px !important; }
-
-/* Responsive cho điện thoại */
-@media (max-width: 768px) {
-    .footer-main { text-align: center; }
-    .warning-box { text-align: center; }
-}
-
+            <div class="footer-col">
+                <h4>Product Info</h4>
+                <p>Barcode: 893 XXXX XXXXX X</p>
+                <p>Scan QR to explore our vibe</p>
+                <p class="disclaimer">This product is a health supplement and not a medicine.</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 /* Modals */
 .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:2000; }
@@ -247,3 +223,4 @@ footer {
     color:black; padding:15px 25px; border-radius:5px; display:none; z-index:3000;
 }
 input, textarea, select { width: 100%; margin: 10px 0; padding: 10px; box-sizing: border-box; }
+   
