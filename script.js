@@ -59,3 +59,4 @@ showToast("🔥 Có người vừa mua sản phẩm!");
 function setLang(lang){
 alert("Demo thôi 😆");
 }   
+    
