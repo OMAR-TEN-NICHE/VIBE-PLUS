@@ -65,3 +65,4 @@ h1 span { color: var(--gold); }
 footer { text-align: center; padding: 40px; color: #888; background: #000; }
 @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
   
+  
