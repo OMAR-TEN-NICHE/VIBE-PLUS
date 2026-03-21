@@ -63,5 +63,5 @@ h1 span { color: var(--gold); }
 .tab-content { display: none; font-size: 14px; }
 
 footer { text-align: center; padding: 40px; color: #888; background: #000; }
-@keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }  
-    
+@keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+   
