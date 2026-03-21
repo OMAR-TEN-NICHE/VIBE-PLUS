@@ -151,66 +151,89 @@ nav a { color: white; text-decoration: none; }
     transform: scale(1.1) !important;
 }
 
-<!-- FEEDBACK SECTION -->
-<section class="feedback">
-    <div class="feedback-wrapper">
-        <h2 class="section-title">What Our Viber's Say</h2>
-        <div class="feedback-row">
-            <div class="feedback-box">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"Stayed up all night for the deadline and still felt fresh!"</p>
-                <strong>- An Tran</strong>
-            </div>
-            <div class="feedback-box">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"The combo is such a steal. Love the Pastel design!"</p>
-                <strong>- Minh Nguyen</strong>
-            </div>
-            <div class="feedback-box">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p>"No jitters like coffee, just pure focus. 10/10."</p>
-                <strong>- Huy Hoang</strong>
-            </div>
-        </div>
-    </div>
-</section>
+/* FEEDBACK DÀN HÀNG NGANG */
+.feedback {
+    padding: 60px 5%;
+    background: #112240;
+    text-align: center;
+}
 
-<!-- FOOTER SECTION -->
-<footer>
-    <div class="footer-container">
-        <!-- Cột 1: Cảnh báo (Trải dài phía trên) -->
-        <div class="footer-warning">
-            <p><strong>WARNING:</strong> For topical use only. Do not use on damaged, broken, or irritated skin. Please read directions carefully prior to use. In the unlikely event of side effects or adhesive allergies, please cease use and seek medical advice. Pregnant or lactating women and anyone taking medication should consult their physician before use. Keep out of reach of children.</p>
-        </div>
+.feedback-row {
+    display: flex; /* Ép dàn hàng ngang */
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Tự xuống dòng trên điện thoại */
+    margin-top: 30px;
+}
 
-        <hr class="footer-divider">
+.feedback-box {
+    flex: 1; /* Chia đều chiều rộng */
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+}
 
-        <!-- Cột 2: Thông tin dàn hàng ngang -->
-        <div class="footer-row">
-            <div class="footer-col">
-                <h4>Manufacturer</h4>
-                <p>Product of Vietnam</p>
-                <p>Manufactured at <strong>TENNICHE CO., LTD</strong></p>
-                <p>Lot C-12, High-Tech Park, District 9, Ho Chi Minh City.</p>
-                <p class="small-text">License No: 456/2024/ATTP-XNCB</p>
-            </div>
+/* FOOTER TRẢI DÀI */
+footer {
+    background: #000;
+    padding: 50px 5%;
+    color: #bbb;
+    font-size: 0.85rem;
+}
 
-            <div class="footer-col">
-                <h4>Contact Us</h4>
-                <p>📞 +84 (28) 38XX XXXX</p>
-                <p>📧 support@vibeplus.vn</p>
-                <p>🌐 <a href="https://facebook.com" target="_blank">Follow us on Facebook</a></p>
-            </div>
+.footer-container {
+    max-width: 1400px; /* Cho phép trải rộng hơn */
+    margin: 0 auto;
+}
 
-            <div class="footer-col">
-                <h4>Product Info</h4>
-                <p>Barcode: 893 XXXX XXXXX X</p>
-                <p>Scan QR to explore our vibe</p>
-                <p class="disclaimer">This product is a health supplement and not a medicine.</p>
-            </div>
-        </div>
-    </div>
-</footer>
+.footer-warning {
+    margin-bottom: 30px;
+    text-align: justify;
+    line-height: 1.5;
+    color: #888;
+}
+
+.footer-divider {
+    border: 0;
+    border-top: 1px solid #222;
+    margin-bottom: 30px;
+}
+
+.footer-row {
+    display: flex; /* Ép dàn hàng ngang */
+    justify-content: space-between; /* Đẩy các cột ra xa nhau */
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    flex: 1; /* Mỗi cột chiếm 1 phần bằng nhau */
+    min-width: 250px;
+}
+
+.footer-col h4 {
+    color: var(--accent);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.footer-col p { margin: 5px 0; }
+.footer-col a { color: #fff; text-decoration: none; }
+
+.small-text { font-size: 0.7rem; color: #666; margin-top: 10px !important; }
+.disclaimer { font-weight: bold; margin-top: 15px !important; color: #777; }
+
+/* Responsive cho điện thoại */
+@media (max-width: 768px) {
+    .footer-row, .feedback-row {
+        flex-direction: column; /* Trên điện thoại thì mới xếp dọc */
+        text-align: center;
+    }
+}
+
 
 /* Modals */
 .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:2000; }
