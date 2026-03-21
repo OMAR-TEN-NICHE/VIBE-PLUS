@@ -151,83 +151,12 @@ nav a { color: white; text-decoration: none; }
     transform: scale(1.1) !important;
 }
 
-/* --- FEEDBACK DÀN HÀNG NGANG --- */
-.feedback-section {
-    padding: 80px 5%;
-    background-color: #0b1d3a;
-    width: 100% !important; /* Ép rộng 100% màn hình */
-    text-align: center;
-}
+/* Feedback */
+.feedback { padding: 50px 10%; background: #112240; text-align: center; }
 
-.feedback-container {
-    display: flex;
-    flex-direction: row; /* Ép dàn hàng ngang */
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap; /* Tự xuống dòng trên điện thoại */
-    max-width: 1400px; /* Cho phép rộng hơn */
-    margin: 40px auto 0;
-}
-
-.feedback-card {
-    flex: 1; /* Chia đều chiều rộng */
-    min-width: 300px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 215, 0, 0.1);
-}
-
-/* --- FOOTER TRẢI RỘNG --- */
-.site-footer {
-    background-color: #000;
-    padding: 60px 5%;
-    color: #bbb;
-    width: 100% !important;
-}
-
-.footer-warning-full {
-    border-bottom: 1px solid #222;
-    padding-bottom: 30px;
-    margin-bottom: 40px;
-    text-align: justify;
-    font-size: 0.85rem;
-    color: #777;
-}
-
-.footer-columns {
-    display: flex;
-    flex-direction: row; /* Ép 3 cột Manufacturer, Support, Info dàn ngang */
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.footer-col {
-    flex: 1; /* Chia 3 phần bằng nhau trải từ trái sang phải */
-    min-width: 250px;
-}
-
-.footer-col h4 {
-    color: #ffd700; /* Màu vàng accent */
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.footer-col a { color: #fff; text-decoration: none; }
-.small-text, .legal-text { font-size: 0.75rem; color: #555; margin-top: 15px; }
-
-/* Responsive cho điện thoại */
-@media (max-width: 768px) {
-    .feedback-container, .footer-columns {
-        flex-direction: column; /* Trên đt thì xếp dọc cho dễ đọc */
-        align-items: center;
-        text-align: center;
-    }
-}
-
+/* Footer */
+footer { background: #000; padding: 40px 10%; font-size: 0.8rem; color: #888; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 20px 0; }
 
 /* Modals */
 .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:2000; }
