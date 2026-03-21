@@ -75,5 +75,4 @@ window.onclick = function(e) {
 }
 
 window.onload = function() { startCountdown(7200); };
-  
    
