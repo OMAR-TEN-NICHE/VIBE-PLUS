@@ -4,104 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIBE+ | Study Energy Patch - VIP PRO MAX</title>
-    <!-- Fonts & Icons -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Nối với file CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <nav>
         <div class="logo">VIBE<span>+</span></div>
         <ul>
-            <li><a href="#sanpham">SẢN PHẨM</a></li>
-            <li><a href="https://facebook.com" target="_blank">LIÊN HỆ</a></li>
+            <li><a href="#sanpham">Sản phẩm</a></li>
+            <li><a href="#thanhphan">Thành phần</a></li>
+            <li><a href="#feedback">Đánh giá</a></li>
             <li><a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
 
     <section class="hero">
-        <div class="flash-sale">⚡ FLASH SALE KẾT THÚC SAU: <span id="countdown">02:00:00</span></div>
-        <h1>ENERGY <span>PATCH</span></h1>
-        <p class="slogan">“Boost Your Style, Unbox Your Mind”</p>
-        <p class="description">Miếng dán năng lượng thế hệ mới giúp bạn tập trung 100% công suất học tập.</p>
-        <a href="#sanpham" class="btn-buy-now-shopee" style="display:inline-block; padding: 15px 50px; border-radius: 50px; font-size: 18px; text-decoration:none;">SĂN DEAL NGAY</a>
+        <div class="content">
+            <div class="flash-sale">
+                <span>⚡ FLASH SALE KẾT THÚC SAU:</span>
+                <span id="countdown">02:00:00</span>
+            </div>
+            <h1>ENERGY <span>PATCH</span></h1>
+            <p class="slogan">“Boost Your Style, Unbox Your Mind”</p>
+            <p class="description">Miếng dán năng lượng thế hệ mới giúp bạn tập trung 100% công suất học tập, tỉnh táo tức thì mà không cần Cafein lỏng.</p>
+            <a href="https://facebook.com" target="_blank" class="btn-buy-now">MUA NGAY (FREESHIP)</a>
+        </div>
     </section>
 
     <section id="sanpham" class="products-section">
-        <h2 class="section-title">🔥 BÁN CHẠY NHẤT</h2>
+        <h2 class="section-title">PHIÊN BẢN ĐƠN LẺ</h2>
         <div class="product-grid">
-            <!-- Sản phẩm 1 -->
+            <!-- Sản phẩm lẻ 1 -> 6 (Giữ nguyên nội dung, thêm nút Shopee/TikTok) -->
             <div class="product-card">
-                <div class="wishlist-heart" onclick="toggleLike(this, 'VIBE+ BASIC')"><i class="far fa-heart"></i></div>
-                <div class="badge-discount">-21%</div>
-                <img src="Basic.jpg" alt="Basic" onclick="openProduct('VIBE+ BASIC', 'Caffeine, Vitamin B12, Trà xanh', 'Dòng cơ bản giúp tỉnh táo 8h liên tục.')">
-                <h4>Miếng dán năng lượng VIBE+ BASIC - Tập trung học tập</h4>
-                <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(842 bán)</span></div>
-                <div class="price-tag"><span class="old-p">150k</span><span class="new-p">119k</span></div>
+                <div class="wishlist-heart" onclick="toggleLike(this, 'BASIC')"><i class="far fa-heart"></i></div>
+                <img src="Basic.jpg" alt="Basic" onclick="openProduct('VIBE+ BASIC', 'Caffeine, Trà xanh, Vitamin B', 'Giúp bạn tập trung 100% công suất học tập.')">
+                <h4>VIBE+ BASIC</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
                 <div class="btn-group">
-                    <button class="btn-cart-shopee" onclick="addToCart('BASIC')"><i class="fas fa-cart-plus"></i></button>
+                    <button class="btn-cart-shopee" onclick="addToCart('Basic')"><i class="fas fa-cart-plus"></i></button>
                     <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
                 </div>
             </div>
 
-            <!-- Sản phẩm 2 -->
             <div class="product-card">
-                <div class="wishlist-heart" onclick="toggleLike(this, 'BLACK & WHITE')"><i class="far fa-heart"></i></div>
-                <div class="badge-discount">-21%</div>
-                <img src="Black_White.jpg" alt="B&W" onclick="openProduct('BLACK & WHITE', 'Taurine, L-Theanine, Caffeine', 'Hỗ trợ cực mạnh cho đêm deadline căng thẳng.')">
-                <h4>Miếng dán năng lượng BLACK & WHITE - Siêu tỉnh táo</h4>
-                <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(1.1k bán)</span></div>
-                <div class="price-tag"><span class="old-p">150k</span><span class="new-p">119k</span></div>
+                <div class="wishlist-heart" onclick="toggleLike(this, 'B&W')"><i class="far fa-heart"></i></div>
+                <img src="Black_White.jpg" alt="B&W" onclick="openProduct('BLACK & WHITE', 'Taurine, Caffeine cao', 'Tỉnh táo tức thì cho đêm deadline.')">
+                <h4>BLACK & WHITE</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
                 <div class="btn-group">
                     <button class="btn-cart-shopee" onclick="addToCart('B&W')"><i class="fas fa-cart-plus"></i></button>
                     <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
                 </div>
             </div>
+
+            <div class="product-card">
+                <div class="wishlist-heart" onclick="toggleLike(this, 'Monochrome')"><i class="far fa-heart"></i></div>
+                <img src="Monochrome.jpg" alt="Monochrome" onclick="openProduct('MONOCHROME', 'Nhân sâm, B12', 'Duy trì sự tỉnh táo suốt 12 tiếng.')">
+                <h4>MONOCHROME</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <div class="btn-group">
+                    <button class="btn-cart-shopee" onclick="addToCart('Monochrome')"><i class="fas fa-cart-plus"></i></button>
+                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="wishlist-heart" onclick="toggleLike(this, 'Muted')"><i class="far fa-heart"></i></div>
+                <img src="Muted.jpg" alt="Muted" onclick="openProduct('MUTED NATURA', 'Trà xanh hữu cơ', 'Tỉnh táo dịu nhẹ, bền bỉ.')">
+                <h4>MUTED NATURA</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <div class="btn-group">
+                    <button class="btn-cart-shopee" onclick="addToCart('Muted')"><i class="fas fa-cart-plus"></i></button>
+                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="wishlist-heart" onclick="toggleLike(this, 'Neutral')"><i class="far fa-heart"></i></div>
+                <img src="Neutral.jpg" alt="Neutral" onclick="openProduct('NEUTRAL BALANCED', 'Ginkgo, Vitamin', 'Cân bằng trí não, tăng trí nhớ.')">
+                <h4>NEUTRAL BALANCED</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <div class="btn-group">
+                    <button class="btn-cart-shopee" onclick="addToCart('Neutral')"><i class="fas fa-cart-plus"></i></button>
+                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="wishlist-heart" onclick="toggleLike(this, 'Pastel')"><i class="far fa-heart"></i></div>
+                <img src="Pastel.jpg" alt="Pastel" onclick="openProduct('PASTEL SWEET', 'Hương hoa, Caffeine', 'Giảm căng thẳng, tỉnh táo nhẹ.')">
+                <h4>PASTEL SWEET</h4>
+                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
+                <div class="btn-group">
+                    <button class="btn-cart-shopee" onclick="addToCart('Pastel')"><i class="fas fa-cart-plus"></i></button>
+                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 100px;">COMBO LIÊN KẾT SIÊU TIẾT KIỆM</h2>
+        <div class="product-grid">
+            <!-- Combo 1+2 -->
+            <div class="product-card">
+                <div class="badge-combo">X2 Năng Lượng</div>
+                <div class="combo-imgs"><img src="1.jpg" style="width:45%"><img src="2.jpg" style="width:45%"></div>
+                <h4>COMBO HỌC BÁ (1+2)</h4>
+                <div class="price-tag"><span class="old-p">300k</span> <span class="new-p">229k</span></div>
+                <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee" style="display:block; text-decoration:none; text-align:center;">Mua ngay</a>
+            </div>
+            <!-- Combo 3+4 -->
+            <div class="product-card">
+                <div class="badge-combo" style="background:#ff4757">Trendsetter</div>
+                <div class="combo-imgs"><img src="3.jpg" style="width:45%"><img src="4.jpg" style="width:45%"></div>
+                <h4>COMBO NGHỆ SĨ (3+4)</h4>
+                <div class="price-tag"><span class="old-p">300k</span> <span class="new-p">229k</span></div>
+                <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee" style="display:block; text-decoration:none; text-align:center;">Mua ngay</a>
+            </div>
+            <!-- Combo 5+6 -->
+            <div class="product-card">
+                <div class="badge-combo" style="background:gold; color:black">Vip Pro</div>
+                <div class="combo-imgs"><img src="5.jpg" style="width:45%"><img src="6.jpg" style="width:45%"></div>
+                <h4>COMBO TỔNG LỰC (5+6)</h4>
+                <div class="price-tag"><span class="old-p">300k</span> <span class="new-p">219k</span></div>
+                <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee" style="display:block; text-decoration:none; text-align:center;">Mua ngay</a>
+            </div>
         </div>
     </section>
 
-    <!-- Modal Chi Tiết -->
+    <!-- Thành phần (GIỮ NGUYÊN GỐC) -->
+    <section id="thanhphan" class="ingredients">
+        <h2 class="section-title">GIẢI MÃ THÀNH PHẦN</h2>
+        <div class="ingred-container">
+            <div class="ingred-item"><i class="fas fa-bolt"></i><h3>Caffeine & Trà xanh</h3><p>Năng lượng sạch, tập trung sâu.</p></div>
+            <div class="ingred-item"><i class="fas fa-brain"></i><h3>Taurine</h3><p>Cải thiện hiệu suất trí não.</p></div>
+            <div class="ingred-item"><i class="fas fa-battery-full"></i><h3>Vitamin B</h3><p>Duy trì sức bền 8-12 tiếng.</p></div>
+        </div>
+    </section>
+
+    <!-- Feedback (GIỮ NGUYÊN GỐC) -->
+    <section id="feedback" class="feedback-section">
+        <h2 class="section-title">KHÁCH HÀNG NÓI GÌ?</h2>
+        <div class="review-grid">
+            <div class="review-card"><p>"Dán cái là học bài tới sáng luôn Shop, xịn thực sự!"</p><b>- Nguyễn Thị Minh Anh ⭐⭐⭐⭐⭐</b></div>
+            <div class="review-card"><p>"Màu Pastel đẹp xỉu, dán như phụ kiện thời trang."</p><b>- Trần Thị Diễm ⭐⭐⭐⭐⭐</b></div>
+            <div class="review-card"><p>"So gorgeous and it helps me concentration effectively work and study."</p><b>- Lukas Johanna ⭐⭐⭐⭐⭐</b></div>
+        </div>
+    </section>
+
+    <!-- Modal Chi Tiết (Tính năng Shopee/TikTok/Lazada) -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <div class="modal-left">
-                <div class="video-fake">
-                    <i class="fab fa-tiktok"></i>
-                    <p style="color:white">VIDEO REVIEW THỰC TẾ</p>
-                </div>
-            </div>
+            <div class="modal-left"><div class="video-fake"><i class="fab fa-tiktok"></i><p style="color:white">REVIEW THỰC TẾ</p></div></div>
             <div class="modal-right">
-                <h2 id="modalTitle">Tên sản phẩm</h2>
+                <h2 id="modalTitle">Sản phẩm</h2>
                 <div class="tabs">
                     <button class="tab-btn active" onclick="openTab(event, 'Desc')">Mô tả</button>
                     <button class="tab-btn" onclick="openTab(event, 'Ingred')">Thành phần</button>
                 </div>
                 <div id="Desc" class="tab-content" style="display:block;"><p id="modalDescText"></p></div>
                 <div id="Ingred" class="tab-content"><p id="modalIngredText"></p></div>
-                <div style="margin-top:auto">
-                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee" style="display:block; text-decoration:none; text-align:center;">TƯ VẤN QUA FACEBOOK</a>
-                </div>
+                <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee" style="display:block; margin-top:auto; text-decoration:none; text-align:center;">TƯ VẤN TRÊN FB</a>
             </div>
         </div>
     </div>
 
+    <!-- Thông báo ảo & Liên hệ -->
     <div id="toast-container"></div>
-
     <div class="sticky-social">
         <a href="https://facebook.com" target="_blank" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
         <a href="mailto:support@vibeplus.vn" class="social-btn email"><i class="fas fa-envelope"></i></a>
         <a href="tel:090" class="social-btn phone"><i class="fas fa-phone"></i></a>
     </div>
 
-    <footer>
-        <p>&copy; 2026 VIBE+ Official Store - support@vibeplus.vn</p>
-    </footer>
+    <footer><p>&copy; 2026 VIBE+ Official Store - support@vibeplus.vn</p></footer>
 
-    <!-- Nối với file JS -->
     <script src="script.js"></script>
 </body>
 </html>
-    
-   
+  
