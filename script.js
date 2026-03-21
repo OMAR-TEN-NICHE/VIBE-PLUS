@@ -1,22 +1,17 @@
-// 1. Countdown Timer
 function startCountdown(duration) {
     let timer = duration, hours, minutes, seconds;
     setInterval(function () {
         hours = parseInt(timer / 3600, 10);
         minutes = parseInt((timer % 3600) / 60, 10);
         seconds = parseInt(timer % 60, 10);
-        
-        // SỬA LỖI Ở ĐÂY: Dùng dấu "=" thay vì dấu "-"
         document.querySelector('#countdown').textContent = 
             (hours < 10 ? "0" + hours : hours) + ":" + 
             (minutes < 10 ? "0" + minutes : minutes) + ":" + 
             (seconds < 10 ? "0" + seconds : seconds);
-
         if (--timer < 0) timer = duration;
     }, 1000);
 }
 
-// 2. Giỏ hàng & Like
 let cartCount = 0;
 function addToCart(name) {
     cartCount++;
@@ -34,28 +29,15 @@ function toggleLike(el, name) {
     }
 }
 
-// 3. Thông báo ảo (Social Proof)
-const buyers = ["Khánh Linh", "Tuấn Anh", "Minh Nguyệt", "Đức Huy", "Thanh Thảo"];
-function showFakeOrder() {
-    const name = buyers[Math.floor(Math.random() * buyers.length)];
-    showToast(`🛍️ ${name} vừa đặt mua sản phẩm VIBE+!`);
-}
-setInterval(showFakeOrder, 10000);
-
 function showToast(msg) {
     const container = document.getElementById('toast-container');
-    if(!container) return;
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `<i class="fas fa-check-circle" style="color:#4cd137"></i> ${msg}`;
+    toast.innerHTML = msg;
     container.appendChild(toast);
-    setTimeout(() => { 
-        toast.style.opacity = '0'; 
-        setTimeout(() => toast.remove(), 500); 
-    }, 3000);
+    setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3000);
 }
 
-// 4. Modal Logic
 function openProduct(name, ingred, desc) {
     document.getElementById("modalTitle").innerText = name;
     document.getElementById("modalIngredText").innerText = ingred;
@@ -76,10 +58,5 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-window.onclick = function(e) {
-    if (e.target == document.getElementById("productModal")) closeModal();
-}
-
-window.onload = function() { 
-    startCountdown(7200); 
-};
+window.onload = function() { startCountdown(7200); };
+window.onclick = function(e) { if (e.target == document.getElementById("productModal")) closeModal(); }
