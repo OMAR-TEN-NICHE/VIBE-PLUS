@@ -1,63 +1,82 @@
-let cart = 0;
+let cart=[];
+let total=0;
 
-/* COUNTDOWN */
-let t = 7200;
-setInterval(()=>{
-let h=Math.floor(t/3600);
-let m=Math.floor((t%3600)/60);
-let s=t%60;
+/* ADD */
+function addToCart(name,price){
+let item=cart.find(i=>i.name===name);
 
-document.getElementById("countdown").innerText =
-`${h}:${m}:${s}`;
+if(item){
+item.qty++;
+}else{
+cart.push({name,price,qty:1});
+}
 
-if(t>0) t--;
-},1000);
+updateCart();
+}
+
+/* UPDATE */
+function updateCart(){
+let html="";
+total=0;
+
+cart.forEach(i=>{
+total+=i.price*i.qty;
+
+html+=`
+<div>
+${i.name} x${i.qty}
+<button onclick="changeQty('${i.name}',1)">+</button>
+<button onclick="changeQty('${i.name}',-1)">-</button>
+</div>
+`;
+});
+
+document.getElementById("cart-items").innerHTML=html;
+document.getElementById("total").innerText=total;
+document.getElementById("cart-count").innerText=cart.length;
+}
+
+/* CHANGE */
+function changeQty(name,val){
+let item=cart.find(i=>i.name===name);
+item.qty+=val;
+if(item.qty<=0){
+cart=cart.filter(i=>i.name!==name);
+}
+updateCart();
+}
+
+/* OPEN CART */
+function openCart(){
+document.getElementById("cartModal").style.display="block";
+}
+
+function closeCart(){
+document.getElementById("cartModal").style.display="none";
+}
 
 /* DETAIL */
-function openDetail(name){
-document.getElementById("modal").style.display="block";
-document.getElementById("name").innerText=name;
+function openDetail(name,price){
+addToCart(name,price);
 }
 
-function closeDetail(){
-document.getElementById("modal").style.display="none";
+/* CHECKOUT */
+function checkout(){
+document.getElementById("checkoutModal").style.display="block";
+document.getElementById("final").innerText=total;
 }
 
-/* BUY */
-function buyNow(){
-cart++;
-document.getElementById("cart-count").innerText=cart;
-showToast("🛒 Đã thêm vào giỏ");
-
-/* upsell */
-setTimeout(()=>{
-showToast("🔥 Mua combo tiết kiệm hơn!");
-},2000);
+/* CONFIRM */
+function confirmOrder(){
+alert("🎉 Đặt hàng thành công!");
+cart=[];
+updateCart();
 }
 
-/* COMBO */
-function buyCombo(name,price){
-cart++;
-document.getElementById("cart-count").innerText=cart;
-showToast("🔥 Đã chọn " + name);
-}
-
-/* TOAST */
-function showToast(msg){
-let t=document.getElementById("toast");
-t.innerText=msg;
-t.style.display="block";
-setTimeout(()=>t.style.display="none",2000);
-}
-
-/* FAKE BUY */
-setInterval(()=>{
-showToast("🔥 Có người vừa mua sản phẩm!");
-},8000);
-
-/* LANGUAGE */
-function setLang(lang){
-alert("Demo thôi 😆");
-}
-   
-   
+/* SWIPE smooth */
+document.querySelectorAll('.scroll').forEach(el=>{
+el.addEventListener('wheel', (evt)=>{
+evt.preventDefault();
+el.scrollLeft += evt.deltaY;
+});
+});
