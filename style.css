@@ -39,4 +39,4 @@ h1 span { color: var(--gold); }
 @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
 footer { text-align: center; padding: 40px; color: #888; background: #000; margin-top: 50px; }
-   
+     
