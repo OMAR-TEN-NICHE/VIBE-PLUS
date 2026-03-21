@@ -46,4 +46,4 @@ window.onclick = function(event) {
 window.onload = function () { 
     startCountdown(7200); // 2 tiếng
 };
-   
+     
