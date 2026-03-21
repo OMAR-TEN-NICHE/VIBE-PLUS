@@ -91,3 +91,4 @@ setInterval(() => {
     const randomName = names[Math.floor(Math.random() * names.length)];
     showToast(`🔥 ${randomName} just purchased a Bundle!`);
 }, 12000);
+  
