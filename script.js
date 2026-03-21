@@ -5,10 +5,13 @@ function startCountdown(duration) {
         hours = parseInt(timer / 3600, 10);
         minutes = parseInt((timer % 3600) / 60, 10);
         seconds = parseInt(timer % 60, 10);
+        
+        // SỬA LỖI Ở ĐÂY: Dùng dấu "=" thay vì dấu "-"
         document.querySelector('#countdown').textContent = 
             (hours < 10 ? "0" + hours : hours) + ":" + 
             (minutes < 10 ? "0" + minutes : minutes) + ":" + 
             (seconds < 10 ? "0" + seconds : seconds);
+
         if (--timer < 0) timer = duration;
     }, 1000);
 }
@@ -46,7 +49,10 @@ function showToast(msg) {
     toast.className = 'toast';
     toast.innerHTML = `<i class="fas fa-check-circle" style="color:#4cd137"></i> ${msg}`;
     container.appendChild(toast);
-    setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3000);
+    setTimeout(() => { 
+        toast.style.opacity = '0'; 
+        setTimeout(() => toast.remove(), 500); 
+    }, 3000);
 }
 
 // 4. Modal Logic
@@ -74,5 +80,6 @@ window.onclick = function(e) {
     if (e.target == document.getElementById("productModal")) closeModal();
 }
 
-window.onload = function() { startCountdown(7200); };
-   
+window.onload = function() { 
+    startCountdown(7200); 
+};
