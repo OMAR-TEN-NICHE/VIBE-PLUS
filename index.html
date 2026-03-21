@@ -4,83 +4,282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIBE+ | Study Energy Patch - VIP PRO MAX</title>
-    <!-- Font & Icon -->
+    <!-- Fonts & Icons -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root { 
+            --gold: #FFD700; 
+            --dark: #002347; 
+            --shopee: #ee4d2d;
+            --shopee-light: #ffeee8;
+            --card: rgba(255,255,255,0.05); 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark); color: white; line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 8%; background: rgba(0,0,0,0.85); position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-size: 24px; font-weight: 900; }
+        .logo span { color: var(--gold); }
+        nav ul { display: flex; list-style: none; align-items: center; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .btn-cart { position: relative; color: var(--gold) !important; }
+
+        /* Hero Section */
+        .hero { text-align: center; padding: 100px 8% 60px; background: radial-gradient(circle at center, #003366, #002347); }
+        .flash-sale { background: var(--shopee); padding: 8px 20px; border-radius: 50px; display: inline-block; margin-bottom: 20px; font-weight: bold; font-size: 14px; animation: pulse 1s infinite; }
+        h1 { font-size: 4rem; font-weight: 900; line-height: 1; }
+        h1 span { color: var(--gold); }
+        .slogan { font-style: italic; color: var(--gold); margin: 15px 0; font-weight: bold; }
+        .description { max-width: 600px; margin: 0 auto 30px; color: #ccc; }
+
+        /* Product Grid */
+        .section-title { text-align: center; margin: 60px 0 40px; font-size: 2rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; padding: 0 8%; }
+        
+        .product-card { 
+            background: #fff; color: #333; padding: 15px; border-radius: 12px; 
+            position: relative; transition: 0.3s; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .product-card:hover { transform: translateY(-8px); }
+        .product-card img { width: 100%; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; }
+        .product-card img:hover { opacity: 0.9; }
+
+        /* Shopee Elements */
+        .wishlist-heart { position: absolute; top: 20px; left: 20px; color: #ff4757; font-size: 22px; z-index: 5; }
+        .badge-discount { position: absolute; top: 20px; right: 20px; background: var(--shopee-light); color: var(--shopee); padding: 2px 6px; font-weight: bold; font-size: 12px; border: 1px solid var(--shopee); }
+        .product-card h4 { font-size: 15px; height: 40px; overflow: hidden; margin: 10px 0 5px; color: #222; }
+        .rating-stars { color: #ffce3d; font-size: 12px; margin-bottom: 8px; }
+        .rating-stars span { color: #888; margin-left: 5px; }
+        .price-tag { display: flex; align-items: baseline; gap: 8px; }
+        .old-p { text-decoration: line-through; color: #999; font-size: 13px; }
+        .new-p { color: var(--shopee); font-size: 1.4rem; font-weight: bold; }
+
+        /* Buttons Style Shopee */
+        .btn-group { display: flex; gap: 8px; margin-top: 15px; }
+        .btn-cart-shopee { background: var(--shopee-light); border: 1px solid var(--shopee); color: var(--shopee); padding: 10px; border-radius: 4px; flex: 1; cursor: pointer; }
+        .btn-buy-now-shopee { background: var(--shopee); border: none; color: white; padding: 10px; border-radius: 4px; flex: 2; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; }
+
+        /* Modal TikTok Style */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 5% auto; width: 90%; max-width: 800px; border-radius: 15px; overflow: hidden; position: relative; color: #333; display: flex; flex-direction: row; height: 500px; }
+        .close { position: absolute; right: 15px; top: 10px; font-size: 30px; color: #fff; cursor: pointer; z-index: 10; text-shadow: 0 0 5px #000; }
+        
+        .modal-left { flex: 1.2; background: #000; display: flex; align-items: center; justify-content: center; position: relative; }
+        .modal-right { flex: 1; padding: 30px; display: flex; flex-direction: column; }
+        
+        .video-fake { text-align: center; color: #555; }
+        .video-fake i { font-size: 60px; color: var(--shopee); margin-bottom: 15px; }
+        
+        .tabs { display: flex; border-bottom: 1px solid #eee; margin: 20px 0 15px; }
+        .tab-btn { background: none; border: none; padding: 10px 15px; cursor: pointer; font-weight: bold; color: #666; font-family: inherit; }
+        .tab-btn.active { color: var(--shopee); border-bottom: 2px solid var(--shopee); }
+        .tab-content { display: none; font-size: 14px; color: #555; line-height: 1.8; }
+
+        /* Toast Notification */
+        #toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 9999; }
+        .toast { 
+            background: white; color: #333; padding: 12px 20px; border-radius: 8px; margin-top: 10px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 12px;
+            animation: slideIn 0.5s ease, fadeOut 0.5s 2.5s forwards; border-left: 5px solid var(--shopee);
+        }
+
+        /* Sticky Social (Bỏ Zalo, Thêm Email) */
+        .sticky-social { position: fixed; bottom: 30px; right: 20px; display: flex; flex-direction: column; gap: 12px; z-index: 100; }
+        .social-btn { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s; }
+        .social-btn:hover { transform: scale(1.1); }
+        .fb { background: #1877F2; } .email { background: var(--shopee); } .phone { background: #25D366; }
+
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+
+        @media (max-width: 768px) {
+            .modal-content { flex-direction: column; height: auto; margin: 10% auto; }
+            .modal-left { height: 250px; }
+            h1 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
+
     <nav>
         <div class="logo">VIBE<span>+</span></div>
         <ul>
-            <li><a href="#sanpham">Sản phẩm</a></li>
-            <li><a href="#thanhphan">Thành phần</a></li>
-            <li><a href="#feedback">Đánh giá</a></li>
+            <li><a href="#sanpham">SẢN PHẨM</a></li>
+            <li><a href="https://facebook.com" target="_blank">LIÊN HỆ</a></li>
             <li><a href="#" class="btn-cart"><i class="fas fa-shopping-cart"></i> (<span id="cart-count">0</span>)</a></li>
         </ul>
     </nav>
 
     <section class="hero">
-        <div class="content">
-            <div class="flash-sale">
-                <span>⚡ FLASH SALE KẾT THÚC SAU:</span>
-                <span id="countdown">02:00:00</span>
-            </div>
-            <h1>ENERGY <span>PATCH</span></h1>
-            <p class="slogan">“Boost Your Style, Unbox Your Mind”</p>
-            <p class="description">Miếng dán năng lượng thế hệ mới giúp bạn tập trung 100% công suất học tập.</p>
-            <a href="https://facebook.com" target="_blank" class="btn-buy-now">MUA NGAY (FREESHIP)</a>
-        </div>
+        <div class="flash-sale">⚡ FLASH SALE KẾT THÚC SAU: <span id="countdown">02:00:00</span></div>
+        <h1>ENERGY <span>PATCH</span></h1>
+        <p class="slogan">“Boost Your Style, Unbox Your Mind”</p>
+        <p class="description">Miếng dán năng lượng thế hệ mới giúp bạn tập trung 100% công suất học tập, tỉnh táo tức thì mà không cần Cafein lỏng.</p>
+        <a href="#sanpham" class="btn-buy-now-shopee" style="display:inline-block; padding: 15px 50px; border-radius: 50px; font-size: 18px;">SĂN DEAL NGAY</a>
     </section>
 
     <section id="sanpham" class="products-section">
-        <h2 class="section-title">PHIÊN BẢN ĐƠN LẺ</h2>
+        <h2 class="section-title">🔥 BÁN CHẠY NHẤT</h2>
+        
         <div class="product-grid">
             <!-- Sản phẩm 1 -->
-            <div class="product-card" onclick="openModal('VIBE+ BASIC', 'Thành phần: Caffeine tinh khiết, Chiết xuất trà xanh, Vitamin B12. Giúp duy trì sự tỉnh táo ổn định trong 8 tiếng.')">
-                <img src="Basic.jpg" alt="Basic">
-                <h4>VIBE+ BASIC</h4>
-                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="btn-add">Xem chi tiết</button>
+            <div class="product-card">
+                <div class="wishlist-heart" onclick="toggleLike(this, 'VIBE+ BASIC')"><i class="far fa-heart"></i></div>
+                <div class="badge-discount">-21%</div>
+                <img src="Basic.jpg" alt="Basic" onclick="openProduct('VIBE+ BASIC', 'Caffeine, Vitamin B12, Trà xanh', 'Dòng cơ bản giúp tỉnh táo 8h liên tục.')">
+                <h4>Miếng dán năng lượng VIBE+ BASIC - Tập trung học tập</h4>
+                <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(842 bán)</span></div>
+                <div class="price-tag"><span class="old-p">150k</span><span class="new-p">119k</span></div>
+                <div class="btn-group">
+                    <button class="btn-cart-shopee" onclick="addToCart('BASIC')"><i class="fas fa-cart-plus"></i></button>
+                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
+                </div>
             </div>
+
             <!-- Sản phẩm 2 -->
-            <div class="product-card" onclick="openModal('BLACK & WHITE', 'Thành phần: Taurine cường độ cao, L-Theanine, Caffeine. Đặc chế cho những đêm chạy deadline căng thẳng.')">
-                <img src="Black_White.jpg" alt="B&W">
-                <h4>BLACK & WHITE</h4>
-                <div class="price-tag"><span class="old-p">150k</span> <span class="new-p">119k</span></div>
-                <button class="btn-add">Xem chi tiết</button>
+            <div class="product-card">
+                <div class="wishlist-heart" onclick="toggleLike(this, 'BLACK & WHITE')"><i class="far fa-heart"></i></div>
+                <div class="badge-discount">-21%</div>
+                <img src="Black_White.jpg" alt="B&W" onclick="openProduct('BLACK & WHITE', 'Taurine, L-Theanine, Caffeine', 'Hỗ trợ cực mạnh cho đêm deadline căng thẳng.')">
+                <h4>Miếng dán năng lượng BLACK & WHITE - Siêu tỉnh táo</h4>
+                <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><span>(1.1k bán)</span></div>
+                <div class="price-tag"><span class="old-p">150k</span><span class="new-p">119k</span></div>
+                <div class="btn-group">
+                    <button class="btn-cart-shopee" onclick="addToCart('B&W')"><i class="fas fa-cart-plus"></i></button>
+                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee">Mua ngay</a>
+                </div>
             </div>
-            <!-- Thêm tương tự cho các sản phẩm khác... -->
         </div>
     </section>
 
-    <!-- MODAL HIỆN CHI TIẾT -->
+    <!-- Modal Chi Tiết Kiểu Shopee/TikTok -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" style="color: #FFD700;">Tên sản phẩm</h2>
-            <div class="modal-body">
-                <div class="ingred-box">
-                    <i class="fas fa-leaf" style="font-size: 40px; color: #FFD700; margin-bottom:15px;"></i>
-                    <p id="modalDescription" style="color: #333; font-weight: 500;">Mô tả nguyên liệu...</p>
+            <div class="modal-left">
+                <div class="video-fake">
+                    <i class="fab fa-tiktok"></i>
+                    <p style="color:white">VIDEO REVIEW THỰC TẾ</p>
                 </div>
             </div>
-            <a href="https://facebook.com" target="_blank" class="btn-buy-now" style="font-size: 1rem; padding: 10px 20px;">ĐẶT MUA NGAY</a>
+            <div class="modal-right">
+                <h2 id="modalTitle">Tên sản phẩm</h2>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="openTab(event, 'Desc')">Mô tả</button>
+                    <button class="tab-btn" onclick="openTab(event, 'Ingred')">Thành phần</button>
+                </div>
+                <div id="Desc" class="tab-content" style="display:block;">
+                    <p id="modalDescText">Mô tả sản phẩm sẽ hiện ở đây.</p>
+                </div>
+                <div id="Ingred" class="tab-content">
+                    <p id="modalIngredText">Thông tin nguyên liệu chi tiết.</p>
+                </div>
+                <div style="margin-top:auto">
+                    <a href="https://facebook.com" target="_blank" class="btn-buy-now-shopee" style="display:block">TƯ VẤN QUA FACEBOOK</a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Thanh liên hệ (Bỏ Zalo, Thêm Email) -->
+    <!-- Thông báo ảo (Social Proof) -->
+    <div id="toast-container"></div>
+
+    <!-- Nút liên hệ -->
     <div class="sticky-social">
         <a href="https://facebook.com" target="_blank" class="social-btn fb"><i class="fab fa-facebook-f"></i></a>
         <a href="mailto:support@vibeplus.vn" class="social-btn email"><i class="fas fa-envelope"></i></a>
         <a href="tel:090" class="social-btn phone"><i class="fas fa-phone"></i></a>
     </div>
 
-    <footer>
-        <p>&copy; 2026 VIBE+ Official Store - support@vibeplus.vn</p>
+    <footer style="text-align:center; padding: 40px; color:#555; background:#000; margin-top:50px;">
+        <p>&copy; 2026 VIBE+ Official Store - Boost Your Style</p>
+        <p style="font-size:12px">Email: support@vibeplus.vn</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // 1. Countdown Timer
+        function startCountdown(duration) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                document.querySelector('#countdown').textContent = 
+                    (hours < 10 ? "0" + hours : hours) + ":" + 
+                    (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+                    (seconds < 10 ? "0" + seconds : seconds);
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+
+        // 2. Giỏ hàng & Like
+        let cartCount = 0;
+        function addToCart(name) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            showToast("🛒 Đã thêm " + name + " vào giỏ hàng!");
+        }
+
+        function toggleLike(el, name) {
+            const icon = el.querySelector('i');
+            if(icon.classList.contains('far')) {
+                icon.classList.replace('far', 'fas');
+                showToast("❤️ Đã thích " + name);
+            } else {
+                icon.classList.replace('fas', 'far');
+            }
+        }
+
+        // 3. Thông báo ảo (Giống TikTok Shop)
+        const buyers = ["Khánh Linh", "Tuấn Anh", "Minh Nguyệt", "Đức Huy", "Thanh Thảo"];
+        function showFakeOrder() {
+            const name = buyers[Math.floor(Math.random() * buyers.length)];
+            showToast(`🛍️ ${name} vừa đặt mua Combo 1+2!`);
+        }
+        setInterval(showFakeOrder, 10000); // Mỗi 10s hiện 1 lần
+
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fas fa-check-circle" style="color:#4cd137"></i> ${msg}`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 3000);
+        }
+
+        // 4. Modal Logic
+        function openProduct(name, ingred, desc) {
+            document.getElementById("modalTitle").innerText = name;
+            document.getElementById("modalIngredText").innerText = ingred;
+            document.getElementById("modalDescText").innerText = desc;
+            document.getElementById("productModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("productModal").style.display = "none";
+        }
+
+        function openTab(evt, tabName) {
+            let contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) contents[i].style.display = "none";
+            let btns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < btns.length; i++) btns[i].className = btns[i].className.replace(" active", "");
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        window.onclick = function(e) {
+            if (e.target == document.getElementById("productModal")) closeModal();
+        }
+
+        window.onload = function() { startCountdown(7200); };
+    </script>
 </body>
 </html>
    
