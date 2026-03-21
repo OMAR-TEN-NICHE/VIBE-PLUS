@@ -79,4 +79,5 @@ el.addEventListener('wheel', (evt)=>{
 evt.preventDefault();
 el.scrollLeft += evt.deltaY;
 });
-});    
+});
+    
