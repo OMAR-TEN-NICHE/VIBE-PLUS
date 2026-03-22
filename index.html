@@ -150,7 +150,24 @@
         </div>
     </div>
 </section>
-
+<!-- PHẦN KÍCH HOẠT MÃ QUÀ TẶNG -->
+<section id="gift-code" style="background: #0a0a0a; padding: 60px 20px; text-align: center; border-top: 2px solid #ff0055;">
+    <div style="max-width: 600px; margin: 0 auto; background: #111; padding: 30px; border-radius: 15px; border: 1px solid #333; box-shadow: 0 0 20px rgba(255,0,85,0.2);">
+        <h2 style="color: #fff; font-size: 24px; margin-bottom: 10px;">🎁 VIBE+ EXCLUSIVE GIFT</h2>
+        <p style="color: #888; margin-bottom: 25px;">Nhập mã bí mật trên sản phẩm của bạn để nhận ưu đãi.</p>
+        
+        <div style="position: relative; display: inline-block; width: 100%; max-width: 350px;">
+            <input type="text" id="couponInput" placeholder="NHẬP MÃ TẠI ĐÂY..." 
+                style="width: 100%; padding: 15px 20px; border-radius: 50px; border: 2px solid #333; background: #000; color: #fff; font-weight: bold; font-size: 16px; outline: none; text-align: center; transition: 0.3s;">
+            <button onclick="checkGiftCode()" class="btn-buy-now-shopee" 
+                style="margin-top: 15px; width: 100%; border: none; cursor: pointer; padding: 15px; border-radius: 50px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                Kích hoạt ngay
+            </button>
+        </div>
+        
+        <div id="resultMessage" style="margin-top: 25px; font-size: 18px; min-height: 30px; transition: 0.5s;"></div>
+    </div>
+</section>
 <!-- FOOTER SECTION -->
 <footer class="footer-full">
     <div class="container-wide">
