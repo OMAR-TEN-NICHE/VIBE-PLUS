@@ -93,3 +93,60 @@ setInterval(() => {
 }, 12000);
     
   
+// 1. Danh sách mã quà tặng (Bạn có thể thêm bớt tùy ý)
+const giftDatabase = {
+    "VIBEPRO": "🔥 Giảm 20% cho đơn sau! Mã: SUCCESS20",
+    "STAYUP": "🚚 FREE SHIP cho đơn hàng tiếp theo: FREESHIP01",
+    "ENERGY99": "🎁 Tặng 1 pack Basic khi mua đơn >200k!",
+    "VIPMAX": "✨ Ưu đãi đặc quyền: Giảm trực tiếp 50k - Mã: VIBE50K"
+};
+
+// 2. Hàm kiểm tra mã
+function checkGiftCode() {
+    const input = document.getElementById('couponInput');
+    const code = input.value.toUpperCase().trim();
+    const resultDiv = document.getElementById('resultMessage');
+    
+    if (code === "") {
+        showResult("❌ Vui lòng nhập mã vào ô!", "#ffcc00");
+        return;
+    }
+
+    if (giftDatabase[code]) {
+        // Nếu mã đúng
+        showResult(`🎉 CHÚC MỪNG!<br><span style="font-size: 20px;">${giftDatabase[code]}</span>`, "#00ff88");
+        // Hiệu ứng rung nhẹ khi thành công
+        input.style.borderColor = "#00ff88";
+    } else {
+        // Nếu mã sai
+        showResult("❌ Mã không hợp lệ. Vui lòng kiểm tra lại!", "#ff4444");
+        input.style.borderColor = "#ff4444";
+    }
+}
+
+// Hàm hiển thị thông báo
+function showResult(text, color) {
+    const resultDiv = document.getElementById('resultMessage');
+    resultDiv.innerHTML = text;
+    resultDiv.style.color = color;
+    resultDiv.style.transform = "scale(1.1)";
+    setTimeout(() => { resultDiv.style.transform = "scale(1)"; }, 200);
+}
+
+// 3. TỰ ĐỘNG LẤY MÃ TỪ LINK QR (Ví dụ: .../index.html?code=VIBEPRO)
+window.addEventListener('DOMContentLoaded', (event) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const codeFromUrl = urlParams.get('code');
+    
+    if (codeFromUrl) {
+        // Cuộn trang xuống phần nhập mã
+        const giftSection = document.getElementById('gift-code');
+        if (giftSection) {
+            giftSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Điền mã vào ô và tự động bấm kiểm tra
+        document.getElementById('couponInput').value = codeFromUrl;
+        setTimeout(checkGiftCode, 1000); // Đợi 1s sau khi cuộn rồi hiện kết quả
+    }
+});
