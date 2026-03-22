@@ -93,60 +93,81 @@ setInterval(() => {
 }, 12000);
     
   
-// 1. Danh sách mã quà tặng (Bạn có thể thêm bớt tùy ý)
+// --- 1. QUẢN LÝ GIỎ HÀNG & SẢN PHẨM ---
+let cartCount = 0;
+function addToCart(product) {
+    cartCount++;
+    document.getElementById('cart-count').innerText = cartCount;
+    alert("🚀 Đã thêm " + product + " vào giỏ hàng!");
+}
+
+function openProduct(title, ingred, desc) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalIngredText').innerText = ingred;
+    document.getElementById('modalDescText').innerText = desc;
+    document.getElementById('productModal').style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById('productModal').style.display = "none";
+}
+
+// --- 2. HỆ THỐNG MÃ QUÀ TẶNG (GIFT CODE) ---
 const giftDatabase = {
-    "VIBEPRO": "🔥 Giảm 20% cho đơn sau! Mã: SUCCESS20",
-    "STAYUP": "🚚 FREE SHIP cho đơn hàng tiếp theo: FREESHIP01",
-    "ENERGY99": "🎁 Tặng 1 pack Basic khi mua đơn >200k!",
-    "VIPMAX": "✨ Ưu đãi đặc quyền: Giảm trực tiếp 50k - Mã: VIBE50K"
+    "24424242": "🎁 Chúc mừng! Bạn nhận được Voucher GIẢM 50K: VIBE50K",
+    "VIBEPRO": "🔥 Ưu đãi VIP: Giảm 20% đơn hàng tiếp theo!",
+    "STAYUP": "🚚 Miễn phí vận chuyển cho đơn hàng này: FREESHIP01",
+    "ENERGY99": "⚡ Tặng kèm 01 túi Tote VIBE+ khi mua hàng!"
 };
 
-// 2. Hàm kiểm tra mã
 function checkGiftCode() {
     const input = document.getElementById('couponInput');
-    const code = input.value.toUpperCase().trim();
     const resultDiv = document.getElementById('resultMessage');
-    
+    const code = input.value.toUpperCase().trim();
+
+    // Hiệu ứng khi nhấn nút
+    console.log("Đang kiểm tra mã: " + code);
+
     if (code === "") {
-        showResult("❌ Vui lòng nhập mã vào ô!", "#ffcc00");
+        resultDiv.innerHTML = "❌ Vui lòng nhập mã bí mật!";
+        resultDiv.style.color = "#ffcc00";
         return;
     }
 
     if (giftDatabase[code]) {
-        // Nếu mã đúng
-        showResult(`🎉 CHÚC MỪNG!<br><span style="font-size: 20px;">${giftDatabase[code]}</span>`, "#00ff88");
-        // Hiệu ứng rung nhẹ khi thành công
+        // Nếu mã ĐÚNG
+        resultDiv.innerHTML = `🎉 CHÚC MỪNG!<br><b style="font-size: 1.2em;">${giftDatabase[code]}</b>`;
+        resultDiv.style.color = "#00ff88";
         input.style.borderColor = "#00ff88";
+        
+        // Hiệu ứng rung nhẹ thành công
+        resultDiv.style.animation = "bounce 0.5s";
     } else {
-        // Nếu mã sai
-        showResult("❌ Mã không hợp lệ. Vui lòng kiểm tra lại!", "#ff4444");
+        // Nếu mã SAI
+        resultDiv.innerHTML = "❌ Mã không hợp lệ hoặc đã hết hạn!";
+        resultDiv.style.color = "#ff4444";
         input.style.borderColor = "#ff4444";
     }
 }
 
-// Hàm hiển thị thông báo
-function showResult(text, color) {
-    const resultDiv = document.getElementById('resultMessage');
-    resultDiv.innerHTML = text;
-    resultDiv.style.color = color;
-    resultDiv.style.transform = "scale(1.1)";
-    setTimeout(() => { resultDiv.style.transform = "scale(1)"; }, 200);
-}
-
-// 3. TỰ ĐỘNG LẤY MÃ TỪ LINK QR (Ví dụ: .../index.html?code=VIBEPRO)
-window.addEventListener('DOMContentLoaded', (event) => {
+// --- 3. TỰ ĐỘNG XỬ LÝ KHI QUÉT QR (Link có đuôi ?code=...) ---
+window.onload = function() {
     const urlParams = new URLSearchParams(window.location.search);
     const codeFromUrl = urlParams.get('code');
     
     if (codeFromUrl) {
-        // Cuộn trang xuống phần nhập mã
-        const giftSection = document.getElementById('gift-code');
-        if (giftSection) {
-            giftSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Điền mã vào ô và tự động bấm kiểm tra
+        // Cuộn xuống phần nhập mã
+        document.getElementById('gift-code').scrollIntoView({ behavior: 'smooth' });
+        // Điền mã và tự động kiểm tra
         document.getElementById('couponInput').value = codeFromUrl;
-        setTimeout(checkGiftCode, 1000); // Đợi 1s sau khi cuộn rồi hiện kết quả
+        setTimeout(checkGiftCode, 800); 
     }
-});
+};
+
+// Đóng modal khi click ra ngoài
+window.onclick = function(event) {
+    const modal = document.getElementById('productModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
