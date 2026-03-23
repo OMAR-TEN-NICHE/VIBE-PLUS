@@ -87,7 +87,7 @@ function showToast(msg) {
 
 // Random Sales Social Proof
 setInterval(() => {
-    const names = ["Alex", "Jordan", "Sarah", "Minh", "Elena"];
+    const names = ["Alex", "Jordan", "Sarah", "Minh", "Elena", "Johanna", "Smith","Loan"];
     const randomName = names[Math.floor(Math.random() * names.length)];
     showToast(`🔥 ${randomName} just purchased a Bundle!`);
 }, 12000);
@@ -114,10 +114,10 @@ function closeModal() {
 
 // --- 2. HỆ THỐNG MÃ QUÀ TẶNG (GIFT CODE) ---
 const giftDatabase = {
-    "24424242": "🎁 Chúc mừng! Bạn nhận được Voucher GIẢM 50K: VIBE50K",
-    "VIBEPRO": "🔥 Ưu đãi VIP: Giảm 20% đơn hàng tiếp theo!",
-    "STAYUP": "🚚 Miễn phí vận chuyển cho đơn hàng này: FREESHIP01",
-    "ENERGY99": "⚡ Tặng kèm 01 túi Tote VIBE+ khi mua hàng!"
+    "24424242": "🎁 Congratulation! You just received Voucher Sale 50.000 VND: VIBE50K",
+    "VIBEPRO": "🔥 Promotion VIP: Sale 5-10% for the first order !",
+    "STAYUP": "🚚 Free shipping for this order: FREESHIP01",
+    "ENERGY99": "⚡ Receive a free VIBE+ Tote Bag with your purchase!"
 };
 
 function checkGiftCode() {
@@ -136,7 +136,7 @@ function checkGiftCode() {
 
     if (giftDatabase[code]) {
         // Nếu mã ĐÚNG
-        resultDiv.innerHTML = `🎉 CHÚC MỪNG!<br><b style="font-size: 1.2em;">${giftDatabase[code]}</b>`;
+        resultDiv.innerHTML = `🎉 CONGRATULATIONS!<br><b style="font-size: 1.2em;">${giftDatabase[code]}</b>`;
         resultDiv.style.color = "#00ff88";
         input.style.borderColor = "#00ff88";
         
@@ -144,7 +144,7 @@ function checkGiftCode() {
         resultDiv.style.animation = "bounce 0.5s";
     } else {
         // Nếu mã SAI
-        resultDiv.innerHTML = "❌ Mã không hợp lệ hoặc đã hết hạn!";
+        resultDiv.innerHTML = "❌ Invalid or expired code!";
         resultDiv.style.color = "#ff4444";
         input.style.borderColor = "#ff4444";
     }
