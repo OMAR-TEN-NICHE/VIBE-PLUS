@@ -184,7 +184,17 @@ function closeVideo() {
     const v = document.getElementById('review-video');
     if (v) v.pause();
 }
-
+// ══ 7. VIDEO POPUP 1══
+function openVideo() {
+    document.getElementById('video-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function closeVideo() {
+    document.getElementById('video-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    const v = document.getElementById('review-video');
+    if (v) v.pause();
+}
 // ══ 8. LUCKY DRAW ══
 function openLucky() {
     document.getElementById('lucky-overlay').classList.add('open');
