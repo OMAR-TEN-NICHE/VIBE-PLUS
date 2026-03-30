@@ -7,25 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg:       #080a0f;
-            --bg2:      #0c0f18;
-            --surface:  #13182a;
-            --surface2: #1a2038;
-            --border:   rgba(255,255,255,0.06);
-            --border2:  rgba(255,255,255,0.11);
-            --accent:   #c4ff3e;
-            --accent-dim: rgba(196,255,62,0.10);
-            --focus-col:  #7cffc4;
-            --focus-dim:  rgba(124,255,196,0.10);
-            --energy-col: #ffb347;
-            --energy-dim: rgba(255,179,71,0.10);
-            --vit-col:    #c4ff3e;
-            --vit-dim:    rgba(196,255,62,0.10);
-            --hot:      #ff5533;
-            --gold:     #c8a84b;
-            --text:     #eef0f7;
-            --muted:    #6b7280;
-            --muted2:   #3d4455;
+            --bg:       #0a0e1a;
+            --bg2:      #0d1224;
+            --surface:  #111827;
+            --surface2: #1a2238;
+            --border:   rgba(255,255,255,0.07);
+            --border2:  rgba(255,255,255,0.12);
+            --accent:   #f0b429;
+            --accent2:  #ffd166;
+            --accent-dim: rgba(240,180,41,0.12);
+            --focus-col:  #7dd3fc;
+            --focus-dim:  rgba(125,211,252,0.10);
+            --energy-col: #f0b429;
+            --energy-dim: rgba(240,180,41,0.10);
+            --vit-col:    #86efac;
+            --vit-dim:    rgba(134,239,172,0.10);
+            --text:     #e8eaf2;
+            --muted:    #6b7894;
+            --muted2:   #3d4660;
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
@@ -37,13 +36,21 @@
             -webkit-font-smoothing: antialiased;
         }
         a { text-decoration: none; color: inherit; }
-        img { display: block; max-width: 100%; }
+
+        /* GRID TEXTURE */
+        body::before {
+            content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
 
         /* NOISE */
         body::after {
             content:''; position:fixed; inset:0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events:none; z-index:0; opacity:0.5;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events:none; z-index:0; opacity:0.6;
         }
 
         /* NAV */
@@ -51,108 +58,162 @@
             position: fixed; top:0; left:0; right:0; z-index:800;
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 48px; height: 68px;
-            background: rgba(8,10,15,0.88);
+            background: rgba(10,14,26,0.92);
             backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--border);
         }
-        .nav-logo { font-family:'Bebas Neue'; font-size:1.7rem; letter-spacing:5px; }
+        .nav-logo {
+            font-family:'Bebas Neue'; font-size:1.75rem; letter-spacing:5px;
+            color: var(--text);
+        }
         .nav-logo span { color: var(--accent); }
-        .nav-back {
-            display: flex; align-items: center; gap: 8px;
-            font-family:'Syne'; font-size:0.78rem; font-weight:700;
+        .nav-links {
+            display:flex; align-items:center; gap:32px;
+        }
+        .nav-link {
+            font-family:'Syne'; font-size:0.72rem; font-weight:700;
             letter-spacing:2px; text-transform:uppercase; color:var(--muted);
             transition: color 0.2s;
         }
-        .nav-back:hover { color: var(--accent); }
+        .nav-link:hover { color:var(--text); }
+        .nav-link.active { color:var(--accent); }
+        .nav-back {
+            display: flex; align-items: center; gap: 8px;
+            font-family:'Syne'; font-size:0.72rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase;
+            color:var(--muted); transition: color 0.2s;
+            padding:8px 18px; border:1px solid var(--border2); border-radius:999px;
+        }
+        .nav-back:hover { color:var(--accent); border-color:var(--accent); }
 
         /* HERO */
         .page-hero {
-            padding: 130px 48px 80px;
+            padding: 140px 48px 90px;
             position: relative; overflow: hidden;
             background: var(--bg);
             border-bottom: 1px solid var(--border);
         }
-        .hero-glow {
+        .hero-blob {
             position:absolute; border-radius:50%;
-            filter:blur(100px); pointer-events:none;
+            filter:blur(120px); pointer-events:none; opacity:0.5;
         }
-        .glow-1 { width:500px;height:400px; background:radial-gradient(circle,rgba(196,255,62,0.06),transparent 70%); right:0; top:0; }
-        .glow-2 { width:300px;height:300px; background:radial-gradient(circle,rgba(124,255,196,0.05),transparent 70%); left:10%; bottom:0; }
+        .blob-1 { width:600px;height:500px; background:radial-gradient(circle,rgba(240,180,41,0.08),transparent 70%); right:-100px; top:-100px; }
+        .blob-2 { width:400px;height:400px; background:radial-gradient(circle,rgba(125,211,252,0.06),transparent 70%); left:-50px; bottom:-50px; }
+        .blob-3 { width:300px;height:300px; background:radial-gradient(circle,rgba(134,239,172,0.05),transparent 70%); right:20%; bottom:0; }
 
-        .hero-inner { max-width:800px; margin:0 auto; position:relative; z-index:2; text-align:center; }
+        .hero-inner { max-width:860px; margin:0 auto; position:relative; z-index:2; text-align:center; }
         .page-tag {
-            display:inline-block;
+            display:inline-flex; align-items:center; gap:8px;
             font-family:'Syne'; font-size:0.68rem; font-weight:700;
-            letter-spacing:4px; text-transform:uppercase; color:var(--accent);
-            margin-bottom:16px;
+            letter-spacing:4px; text-transform:uppercase;
+            color:var(--accent); margin-bottom:20px;
+            padding:6px 16px; border:1px solid rgba(240,180,41,0.3);
+            border-radius:999px; background:rgba(240,180,41,0.08);
         }
+        .page-tag::before { content:'◆'; font-size:0.5rem; }
+
         .page-title {
             font-family:'Bebas Neue';
-            font-size: clamp(3.5rem,8vw,6.5rem);
-            line-height:0.95; letter-spacing:2px;
-            margin-bottom:20px;
+            font-size: clamp(3.5rem,9vw,7rem);
+            line-height:0.92; letter-spacing:3px;
+            margin-bottom:24px;
         }
         .page-title .stroke {
-            -webkit-text-stroke:1.5px rgba(238,240,247,0.5);
+            -webkit-text-stroke:1.5px rgba(232,234,242,0.35);
             color:transparent;
         }
+        .page-title .gold { color:var(--accent); }
+
         .page-subtitle {
-            font-size:1.05rem; font-weight:300; font-style:italic;
-            color:var(--muted); line-height:1.7; margin-bottom:36px;
+            font-size:1rem; font-weight:300; font-style:italic;
+            color:var(--muted); line-height:1.75; margin-bottom:40px;
+            max-width:580px; margin-left:auto; margin-right:auto;
+        }
+
+        /* STATS BAR */
+        .hero-stats {
+            display:flex; justify-content:center; gap:0;
+            border:1px solid var(--border2); border-radius:16px;
+            overflow:hidden; max-width:560px; margin:0 auto 40px;
+            background:var(--surface);
+        }
+        .stat-item {
+            flex:1; padding:16px 20px; text-align:center;
+            border-right:1px solid var(--border2);
+        }
+        .stat-item:last-child { border-right:none; }
+        .stat-num {
+            font-family:'Bebas Neue'; font-size:1.8rem;
+            letter-spacing:2px; color:var(--accent);
+            line-height:1;
+        }
+        .stat-label {
+            font-family:'Syne'; font-size:0.6rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase;
+            color:var(--muted); margin-top:4px;
         }
 
         /* GROUP TABS */
         .group-tabs {
-            display:flex; justify-content:center; gap:10px;
-            flex-wrap:wrap; margin-bottom:0;
+            display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
         }
         .tab-btn {
-            padding:9px 22px;
+            padding:10px 24px;
             background:var(--surface); border:1px solid var(--border2);
             border-radius:999px; color:var(--muted);
-            font-family:'Syne'; font-size:0.78rem; font-weight:700;
+            font-family:'Syne'; font-size:0.75rem; font-weight:700;
             letter-spacing:1.5px; text-transform:uppercase;
             cursor:pointer; transition:all 0.25s;
         }
         .tab-btn:hover { border-color:var(--accent); color:var(--accent); }
-        .tab-btn.active { background:var(--accent); color:var(--bg); border-color:var(--accent); }
+        .tab-btn.active {
+            background:var(--accent); color:var(--bg);
+            border-color:var(--accent);
+            box-shadow: 0 0 20px rgba(240,180,41,0.3);
+        }
 
         /* MAIN */
-        main { max-width:1200px; margin:0 auto; padding:80px 48px 120px; position:relative; z-index:1; }
+        main { max-width:1160px; margin:0 auto; padding:80px 48px 120px; position:relative; z-index:1; }
 
         /* GROUP SECTION */
-        .group-section { margin-bottom:90px; }
+        .group-section { margin-bottom:100px; }
         .group-header {
             display:flex; align-items:center; gap:20px;
-            margin-bottom:40px; padding-bottom:24px;
+            margin-bottom:40px; padding-bottom:28px;
             border-bottom:1px solid var(--border2);
+            position:relative;
         }
+        .group-header::after {
+            content:''; position:absolute; bottom:-1px; left:0;
+            width:80px; height:2px;
+        }
+        .group-section:nth-child(1) .group-header::after { background:var(--focus-col); }
+        .group-section:nth-child(2) .group-header::after { background:var(--energy-col); }
+        .group-section:nth-child(3) .group-header::after { background:var(--vit-col); }
+
         .group-icon {
-            width:52px; height:52px; border-radius:16px;
+            width:54px; height:54px; border-radius:18px;
             display:flex; align-items:center; justify-content:center;
             font-size:1.5rem; flex-shrink:0;
         }
-        .icon-focus  { background:var(--focus-dim);  border:1px solid rgba(124,255,196,0.2); }
-        .icon-energy { background:var(--energy-dim); border:1px solid rgba(255,179,71,0.2); }
-        .icon-vit    { background:var(--vit-dim);    border:1px solid rgba(196,255,62,0.2); }
+        .icon-focus  { background:var(--focus-dim);  border:1px solid rgba(125,211,252,0.2); }
+        .icon-energy { background:var(--energy-dim); border:1px solid rgba(240,180,41,0.2); }
+        .icon-vit    { background:var(--vit-dim);    border:1px solid rgba(134,239,172,0.2); }
 
-        .group-title-wrap {}
         .group-label {
-            font-family:'Syne'; font-size:0.65rem; font-weight:700;
-            letter-spacing:4px; text-transform:uppercase; margin-bottom:4px;
+            font-family:'Syne'; font-size:0.62rem; font-weight:700;
+            letter-spacing:4px; text-transform:uppercase; margin-bottom:5px;
         }
         .label-focus  { color:var(--focus-col); }
         .label-energy { color:var(--energy-col); }
         .label-vit    { color:var(--vit-col); }
 
-        .group-name {
-            font-family:'Bebas Neue';
-            font-size:2.4rem; letter-spacing:2px; line-height:1;
-        }
+        .group-name { font-family:'Bebas Neue'; font-size:2.4rem; letter-spacing:2px; line-height:1; }
         .group-count {
             margin-left:auto;
-            font-family:'Syne'; font-size:0.75rem; font-weight:700;
+            font-family:'Syne'; font-size:0.72rem; font-weight:700;
             letter-spacing:1px; color:var(--muted);
+            padding:6px 14px; border:1px solid var(--border2); border-radius:999px;
         }
 
         /* INGREDIENT CARDS */
@@ -160,6 +221,10 @@
             display:grid;
             grid-template-columns:repeat(2,1fr);
             gap:20px;
+        }
+        .ingredients-grid.single { grid-template-columns:1fr; max-width:680px; }
+        .ingredients-grid.three {
+            grid-template-columns: repeat(3, 1fr);
         }
 
         .ing-card {
@@ -175,154 +240,197 @@
             content:''; position:absolute; inset:0;
             opacity:0; transition:opacity 0.3s; pointer-events:none; border-radius:24px;
         }
-        .ing-card.focus-card::before  { background:linear-gradient(135deg,rgba(124,255,196,0.04),transparent); }
-        .ing-card.energy-card::before { background:linear-gradient(135deg,rgba(255,179,71,0.04),transparent); }
-        .ing-card.vit-card::before    { background:linear-gradient(135deg,rgba(196,255,62,0.04),transparent); }
-        .ing-card:hover { transform:translateY(-5px); box-shadow:0 24px 50px rgba(0,0,0,0.4); }
+        .ing-card.focus-card::before  { background:linear-gradient(135deg,rgba(125,211,252,0.05),transparent); }
+        .ing-card.energy-card::before { background:linear-gradient(135deg,rgba(240,180,41,0.05),transparent); }
+        .ing-card.vit-card::before    { background:linear-gradient(135deg,rgba(134,239,172,0.05),transparent); }
+        .ing-card:hover { transform:translateY(-6px); box-shadow:0 28px 56px rgba(0,0,0,0.45); }
         .ing-card:hover::before { opacity:1; }
-        .ing-card.focus-card:hover  { border-color:rgba(124,255,196,0.25); }
-        .ing-card.energy-card:hover { border-color:rgba(255,179,71,0.25); }
-        .ing-card.vit-card:hover    { border-color:rgba(196,255,62,0.25); }
+        .ing-card.focus-card:hover  { border-color:rgba(125,211,252,0.28); }
+        .ing-card.energy-card:hover { border-color:rgba(240,180,41,0.28); }
+        .ing-card.vit-card:hover    { border-color:rgba(134,239,172,0.28); }
 
-        /* Card image */
+        /* BEAUTIFUL IMAGE PLACEHOLDER */
         .ing-img-wrap {
-            width:160px; flex-shrink:0;
-            background:var(--bg2);
+            width:150px; flex-shrink:0;
             position:relative; overflow:hidden;
         }
         .ing-img-wrap img {
             width:100%; height:100%; object-fit:cover;
             transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
         }
-        .ing-card:hover .ing-img-wrap img { transform:scale(1.07); }
+        .ing-card:hover .ing-img-wrap img { transform:scale(1.08); }
 
-        /* Placeholder if no image */
-        .ing-img-placeholder {
-            width:100%; height:100%;
-            display:flex; flex-direction:column; align-items:center; justify-content:center;
-            gap:8px; opacity:0.3;
+        .ing-placeholder {
+            width:100%; height:100%; min-height:200px;
+            display:flex; flex-direction:column;
+            align-items:center; justify-content:center; gap:10px;
+            position:relative; overflow:hidden;
         }
-        .ing-img-placeholder .ph-icon { font-size:2rem; }
-        .ing-img-placeholder .ph-text {
-            font-family:'Syne'; font-size:0.6rem; letter-spacing:2px;
-            text-transform:uppercase; color:var(--muted);
+        /* Gradient backgrounds per ingredient */
+        .ph-caffeine   { background: linear-gradient(160deg, #1a0f02, #3d2200, #1a0f02); }
+        .ph-taurine    { background: linear-gradient(160deg, #0a1a2a, #102040, #0a1a2a); }
+        .ph-glucuro    { background: linear-gradient(160deg, #0d1a0d, #183018, #0d1a0d); }
+        .ph-greentea   { background: linear-gradient(160deg, #071a0f, #0f3020, #071a0f); }
+        .ph-vitb3      { background: linear-gradient(160deg, #1a1002, #352202, #1a1002); }
+        .ph-vitb5      { background: linear-gradient(160deg, #18080a, #331016, #18080a); }
+        .ph-vitb6      { background: linear-gradient(160deg, #0d0a1a, #1e1535, #0d0a1a); }
+
+        .ph-orb {
+            width:80px; height:80px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-size:2.2rem; position:relative; z-index:2;
+            box-shadow: 0 0 30px currentColor;
+        }
+        .orb-caffeine { background:radial-gradient(circle,rgba(255,180,60,0.3),rgba(255,120,20,0.1)); color:rgba(255,160,40,0.8); box-shadow:0 0 30px rgba(255,140,20,0.2); }
+        .orb-taurine  { background:radial-gradient(circle,rgba(100,200,255,0.3),rgba(50,150,255,0.1)); color:rgba(100,200,255,0.8); box-shadow:0 0 30px rgba(80,180,255,0.2); }
+        .orb-glucuro  { background:radial-gradient(circle,rgba(100,255,150,0.3),rgba(50,200,100,0.1)); color:rgba(100,255,150,0.8); box-shadow:0 0 30px rgba(80,220,120,0.2); }
+        .orb-greentea { background:radial-gradient(circle,rgba(80,220,120,0.3),rgba(40,180,80,0.1)); color:rgba(80,220,120,0.8); box-shadow:0 0 30px rgba(60,200,100,0.2); }
+        .orb-vitb3    { background:radial-gradient(circle,rgba(255,210,80,0.3),rgba(255,160,30,0.1)); color:rgba(255,200,60,0.8); box-shadow:0 0 30px rgba(255,180,40,0.2); }
+        .orb-vitb5    { background:radial-gradient(circle,rgba(255,140,160,0.3),rgba(220,80,100,0.1)); color:rgba(255,140,160,0.8); box-shadow:0 0 30px rgba(240,100,120,0.2); }
+        .orb-vitb6    { background:radial-gradient(circle,rgba(180,140,255,0.3),rgba(130,80,255,0.1)); color:rgba(180,140,255,0.8); box-shadow:0 0 30px rgba(160,100,255,0.2); }
+
+        .ph-label {
+            font-family:'Syne'; font-size:0.55rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3);
+            text-align:center; padding:0 8px;
+            position:relative; z-index:2;
+        }
+        .ph-shimmer {
+            position:absolute; inset:0;
+            background:linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        @keyframes shimmer {
+            0%,100% { opacity:0; }
+            50% { opacity:1; }
+        }
+        /* Upload hint overlay */
+        .ph-upload-hint {
+            position:absolute; bottom:8px; left:0; right:0;
+            text-align:center; z-index:3;
+            font-family:'Syne'; font-size:0.5rem; letter-spacing:1.5px;
+            text-transform:uppercase; color:rgba(255,255,255,0.18);
         }
 
-        /* Card body */
-        .ing-body { padding:22px 24px; flex:1; display:flex; flex-direction:column; }
+        /* CARD BODY */
+        .ing-body { padding:20px 22px; flex:1; display:flex; flex-direction:column; }
 
         .ing-tag {
             display:inline-flex; align-items:center;
-            font-family:'Syne'; font-size:0.6rem; font-weight:800;
+            font-family:'Syne'; font-size:0.58rem; font-weight:800;
             letter-spacing:3px; text-transform:uppercase;
             padding:3px 10px; border-radius:999px;
             margin-bottom:10px; width:fit-content;
         }
-        .tag-focus  { background:var(--focus-dim);  color:var(--focus-col);  border:1px solid rgba(124,255,196,0.2); }
-        .tag-energy { background:var(--energy-dim); color:var(--energy-col); border:1px solid rgba(255,179,71,0.2); }
-        .tag-vit    { background:var(--vit-dim);    color:var(--vit-col);    border:1px solid rgba(196,255,62,0.2); }
+        .tag-focus  { background:var(--focus-dim);  color:var(--focus-col);  border:1px solid rgba(125,211,252,0.2); }
+        .tag-energy { background:var(--energy-dim); color:var(--energy-col); border:1px solid rgba(240,180,41,0.2); }
+        .tag-vit    { background:var(--vit-dim);    color:var(--vit-col);    border:1px solid rgba(134,239,172,0.2); }
 
-        .ing-name {
-            font-family:'Bebas Neue';
-            font-size:1.5rem; letter-spacing:1.5px;
-            margin-bottom:4px; line-height:1.1;
-        }
-        .ing-latin {
-            font-size:0.78rem; font-style:italic;
-            color:var(--muted); margin-bottom:14px;
-        }
+        .ing-name { font-family:'Bebas Neue'; font-size:1.45rem; letter-spacing:1.5px; margin-bottom:3px; line-height:1.1; }
+        .ing-latin { font-size:0.76rem; font-style:italic; color:var(--muted); margin-bottom:12px; }
 
         .ing-dosage {
             display:inline-flex; align-items:center; gap:6px;
-            font-family:'Syne'; font-size:0.72rem; font-weight:700;
+            font-family:'Syne'; font-size:0.7rem; font-weight:700;
             letter-spacing:1px; color:var(--muted2);
-            margin-bottom:14px;
+            margin-bottom:12px;
+            padding:4px 12px; border-radius:8px; background:var(--surface2);
+            width:fit-content;
         }
         .ing-dosage span { color:var(--accent); }
 
-        .ing-desc {
-            font-size:0.88rem; color:var(--muted); line-height:1.7;
-            font-weight:300; margin-bottom:16px;
-        }
+        .ing-desc { font-size:0.86rem; color:var(--muted); line-height:1.7; font-weight:300; margin-bottom:14px; }
 
-        /* Mechanism + Benefits */
         .ing-detail-row { display:flex; flex-direction:column; gap:10px; margin-top:auto; }
-        .ing-detail-item {}
         .detail-label {
-            font-family:'Syne'; font-size:0.62rem; font-weight:800;
-            letter-spacing:3px; text-transform:uppercase;
-            margin-bottom:5px;
+            font-family:'Syne'; font-size:0.6rem; font-weight:800;
+            letter-spacing:3px; text-transform:uppercase; margin-bottom:5px;
         }
         .detail-label.mech { color:var(--muted2); }
         .detail-label.benefit { color:var(--accent); }
+        .detail-text { font-size:0.82rem; color:var(--muted); line-height:1.65; }
 
-        .detail-text {
-            font-size:0.83rem; color:var(--muted); line-height:1.65;
-        }
-        .benefit-list {
-            display:flex; flex-wrap:wrap; gap:6px; margin-top:5px;
-        }
+        .benefit-list { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
         .benefit-chip {
             padding:4px 11px;
             background:var(--surface2); border:1px solid var(--border2);
             border-radius:999px;
-            font-family:'Syne'; font-size:0.67rem; font-weight:600;
+            font-family:'Syne'; font-size:0.64rem; font-weight:600;
             letter-spacing:0.5px; color:var(--text);
         }
 
-        /* BACK TO TOP / CTA */
+        /* DIVIDER */
+        .section-divider {
+            height:1px; background:linear-gradient(90deg, transparent, var(--border2), transparent);
+            margin:0 0 100px;
+        }
+
+        /* CTA */
         .page-cta {
-            margin-top:80px; padding:60px;
-            background:var(--surface);
-            border:1px solid var(--border2);
-            border-radius:32px;
+            margin-top:80px; padding:64px;
+            border:1px solid var(--border2); border-radius:28px;
             text-align:center; position:relative; overflow:hidden;
+            background:linear-gradient(135deg, var(--surface) 0%, rgba(240,180,41,0.04) 100%);
         }
         .cta-glow {
-            position:absolute; top:-60px; left:50%; transform:translateX(-50%);
-            width:400px; height:200px;
-            background:radial-gradient(circle,rgba(196,255,62,0.07),transparent 70%);
+            position:absolute; top:-80px; left:50%; transform:translateX(-50%);
+            width:500px; height:300px;
+            background:radial-gradient(ellipse,rgba(240,180,41,0.08),transparent 70%);
             pointer-events:none;
         }
-        .cta-tag { font-family:'Syne'; font-size:0.68rem; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
-        .cta-title { font-family:'Bebas Neue'; font-size:3rem; letter-spacing:2px; margin-bottom:12px; }
-        .cta-sub { font-size:0.95rem; color:var(--muted); margin-bottom:32px; }
+        .cta-tag {
+            font-family:'Syne'; font-size:0.68rem; font-weight:700;
+            letter-spacing:4px; text-transform:uppercase; color:var(--accent);
+            margin-bottom:14px;
+            display:inline-block; padding:6px 16px;
+            border:1px solid rgba(240,180,41,0.3); border-radius:999px;
+            background:rgba(240,180,41,0.08);
+        }
+        .cta-title { font-family:'Bebas Neue'; font-size:3.2rem; letter-spacing:3px; margin-bottom:12px; }
+        .cta-sub { font-size:0.95rem; color:var(--muted); margin-bottom:36px; line-height:1.7; }
         .btn-shop {
-            display:inline-flex; align-items:center; gap:8px;
-            padding:15px 36px;
+            display:inline-flex; align-items:center; gap:10px;
+            padding:16px 40px;
             background:var(--accent); color:var(--bg);
             border:none; border-radius:999px;
-            font-family:'Syne'; font-weight:700; font-size:0.88rem;
-            letter-spacing:1.5px; text-transform:uppercase;
+            font-family:'Syne'; font-weight:800; font-size:0.85rem;
+            letter-spacing:2px; text-transform:uppercase;
             cursor:pointer; transition:all 0.3s;
             text-decoration:none;
+            box-shadow:0 4px 24px rgba(240,180,41,0.3);
         }
-        .btn-shop:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(196,255,62,0.22); }
+        .btn-shop:hover { transform:translateY(-3px); box-shadow:0 16px 40px rgba(240,180,41,0.4); background:var(--accent2); }
 
-        /* FOOTER mini */
+        /* FOOTER */
         .footer-mini {
             border-top:1px solid var(--border);
-            padding:24px 48px;
+            padding:28px 48px;
             display:flex; justify-content:space-between; align-items:center;
             position:relative; z-index:1;
         }
-        .footer-mini-logo { font-family:'Bebas Neue'; font-size:1.2rem; letter-spacing:4px; color:var(--muted2); }
+        .footer-mini-logo { font-family:'Bebas Neue'; font-size:1.3rem; letter-spacing:5px; color:var(--muted2); }
         .footer-mini-logo span { color:var(--accent); }
-        .footer-mini p { font-size:0.78rem; color:var(--muted2); }
+        .footer-mini p { font-size:0.76rem; color:var(--muted2); }
 
         /* RESPONSIVE */
-        @media(max-width:900px){
+        @media(max-width:1000px){
+            .ingredients-grid.three { grid-template-columns:1fr 1fr; }
+        }
+        @media(max-width:860px){
             nav { padding:0 20px; }
+            .nav-links { display:none; }
             .page-hero { padding:110px 20px 60px; }
             main { padding:60px 20px 80px; }
-            .ingredients-grid { grid-template-columns:1fr; }
+            .ingredients-grid, .ingredients-grid.three { grid-template-columns:1fr; }
             .ing-img-wrap { width:120px; }
             .footer-mini { padding:20px; flex-direction:column; gap:8px; text-align:center; }
-        }
-        @media(max-width:540px){
-            .ing-card { flex-direction:column; }
-            .ing-img-wrap { width:100%; height:200px; }
+            .hero-stats { max-width:100%; }
             .page-cta { padding:36px 20px; }
+        }
+        @media(max-width:520px){
+            .ing-card { flex-direction:column; }
+            .ing-img-wrap { width:100%; height:180px; }
+            .ing-placeholder { min-height:180px; }
         }
     </style>
 </head>
@@ -331,250 +439,124 @@
 <!-- NAV -->
 <nav>
     <div class="nav-logo">VIBE<span>+</span></div>
+    <div class="nav-links">
+        <a href="#" class="nav-link">How It Works</a>
+        <a href="#" class="nav-link">Shop</a>
+        <a href="#" class="nav-link">Bundles</a>
+        <a href="#" class="nav-link active">Ingredients ◆</a>
+        <a href="#" class="nav-link">Reviews</a>
+    </div>
     <a href="index.html" class="nav-back">← Back to Shop</a>
 </nav>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-    <div class="hero-glow glow-1"></div>
-    <div class="hero-glow glow-2"></div>
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-blob blob-3"></div>
     <div class="hero-inner">
         <span class="page-tag">Transparency First</span>
         <h1 class="page-title">
-            <span class="stroke">WHAT'S</span><br>INSIDE
+            <span class="stroke">WHAT'S</span><br><span class="gold">INSIDE</span>
         </h1>
         <p class="page-subtitle">Every ingredient in VIBE+ Energy Patch — where it comes from,<br>how it works, and why it's in your patch.</p>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-num">7</div>
+                <div class="stat-label">Ingredients</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">8H</div>
+                <div class="stat-label">Duration</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">0</div>
+                <div class="stat-label">Crash</div>
+            </div>
+        </div>
+
         <div class="group-tabs">
-            <button class="tab-btn active" onclick="scrollTo('focus')">🧠 Focus</button>
-            <button class="tab-btn" onclick="scrollTo('energy')">⚡ Energy</button>
-            <button class="tab-btn" onclick="scrollTo('vitamins')">💊 Vitamins</button>
+            <button class="tab-btn active" onclick="scrollToSection('energy', this)">⚡ Energy</button>
+            <button class="tab-btn" onclick="scrollToSection('vitamins', this)">💊 Vitamins</button>
         </div>
     </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <main>
 
-    <!-- ── GROUP 1: FOCUS ── -->
-    <section class="group-section" id="focus">
+    <!-- ── GROUP 1: ENERGY COMPLEX ── -->
+    <section class="group-section" id="energy">
         <div class="group-header">
-            <div class="group-icon icon-focus">🧠</div>
+            <div class="group-icon icon-energy">⚡</div>
             <div class="group-title-wrap">
-                <div class="group-label label-focus">GROUP 01</div>
-                <div class="group-name">FOCUS COMPLEX</div>
+                <div class="group-label label-energy">GROUP 01</div>
+                <div class="group-name">ENERGY COMPLEX</div>
             </div>
             <div class="group-count">4 INGREDIENTS</div>
         </div>
 
         <div class="ingredients-grid">
 
-            <!-- L-Theanine -->
-            <div class="ing-card focus-card">
-                <div class="ing-img-wrap">
-                    <!-- Replace src with your image: theanine.jpg -->
-                    <img src="theanine.jpg" alt="L-Theanine"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🍵</div>
-                        <div class="ph-text">theanine.jpg</div>
-                    </div>
-                </div>
-                <div class="ing-body">
-                    <span class="ing-tag tag-focus">FOCUS</span>
-                    <div class="ing-name">L-THEANINE</div>
-                    <div class="ing-latin">From: Camellia sinensis (Green Tea)</div>
-                    <div class="ing-dosage">Typical dose: <span>100–200mg</span> per patch</div>
-                    <div class="ing-desc">An amino acid found naturally in green tea leaves. Works synergistically with caffeine to produce calm, focused alertness without the jittery side effects.</div>
-                    <div class="ing-detail-row">
-                        <div class="ing-detail-item">
-                            <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Increases alpha brain wave activity — the same mental state experienced during meditation. Boosts GABA, serotonin, and dopamine neurotransmitters to reduce anxiety while maintaining alertness.</div>
-                        </div>
-                        <div class="ing-detail-item">
-                            <div class="detail-label benefit">✦ Benefits</div>
-                            <div class="benefit-list">
-                                <span class="benefit-chip">Calm Focus</span>
-                                <span class="benefit-chip">No Jitters</span>
-                                <span class="benefit-chip">Mood Boost</span>
-                                <span class="benefit-chip">Better Sleep Quality</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ginkgo Biloba -->
-            <div class="ing-card focus-card">
-                <div class="ing-img-wrap">
-                    <img src="ginkgo.jpg" alt="Ginkgo Biloba"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🍃</div>
-                        <div class="ph-text">ginkgo.jpg</div>
-                    </div>
-                </div>
-                <div class="ing-body">
-                    <span class="ing-tag tag-focus">FOCUS</span>
-                    <div class="ing-name">GINKGO BILOBA</div>
-                    <div class="ing-latin">From: Ginkgo biloba tree leaf extract</div>
-                    <div class="ing-dosage">Typical dose: <span>120–240mg</span> standardized extract</div>
-                    <div class="ing-desc">One of the world's oldest living tree species. Used in traditional medicine for over 5,000 years. Rich in flavonoids and terpenoids — powerful antioxidants for the brain.</div>
-                    <div class="ing-detail-row">
-                        <div class="ing-detail-item">
-                            <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Dilates blood vessels and improves circulation to the brain. Inhibits platelet aggregation, increasing oxygen and glucose delivery to neurons. Also acts as a potent free-radical scavenger protecting brain cells.</div>
-                        </div>
-                        <div class="ing-detail-item">
-                            <div class="detail-label benefit">✦ Benefits</div>
-                            <div class="benefit-list">
-                                <span class="benefit-chip">Memory Recall</span>
-                                <span class="benefit-chip">Brain Circulation</span>
-                                <span class="benefit-chip">Mental Clarity</span>
-                                <span class="benefit-chip">Neuroprotection</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bacopa Monnieri -->
-            <div class="ing-card focus-card">
-                <div class="ing-img-wrap">
-                    <img src="bacopa.jpg" alt="Bacopa Monnieri"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🌿</div>
-                        <div class="ph-text">bacopa.jpg</div>
-                    </div>
-                </div>
-                <div class="ing-body">
-                    <span class="ing-tag tag-focus">FOCUS</span>
-                    <div class="ing-name">BACOPA MONNIERI</div>
-                    <div class="ing-latin">From: Brahmi herb (Ayurvedic medicine)</div>
-                    <div class="ing-dosage">Typical dose: <span>150–300mg</span> per patch</div>
-                    <div class="ing-desc">An Ayurvedic herb used for centuries in India to enhance learning, memory, and cognitive performance. Particularly effective for students and knowledge workers.</div>
-                    <div class="ing-detail-row">
-                        <div class="ing-detail-item">
-                            <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Bacosides A & B repair damaged neurons by enhancing kinase activity and protein synthesis. Increases dendrite branching, literally growing more neural connections. Also modulates serotonin and dopamine systems.</div>
-                        </div>
-                        <div class="ing-detail-item">
-                            <div class="detail-label benefit">✦ Benefits</div>
-                            <div class="benefit-list">
-                                <span class="benefit-chip">Long-term Memory</span>
-                                <span class="benefit-chip">Learning Speed</span>
-                                <span class="benefit-chip">Stress Reduction</span>
-                                <span class="benefit-chip">Neural Repair</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lion's Mane -->
-            <div class="ing-card focus-card">
-                <div class="ing-img-wrap">
-                    <img src="lionsmane.jpg" alt="Lion's Mane"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🍄</div>
-                        <div class="ph-text">lionsmane.jpg</div>
-                    </div>
-                </div>
-                <div class="ing-body">
-                    <span class="ing-tag tag-focus">FOCUS</span>
-                    <div class="ing-name">LION'S MANE</div>
-                    <div class="ing-latin">From: Hericium erinaceus mushroom</div>
-                    <div class="ing-dosage">Typical dose: <span>300–500mg</span> extract</div>
-                    <div class="ing-desc">A unique medicinal mushroom that looks like a white waterfall. The only food source known to stimulate NGF (Nerve Growth Factor) production — essentially fertilizer for your brain.</div>
-                    <div class="ing-detail-row">
-                        <div class="ing-detail-item">
-                            <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Hericenones and erinacines penetrate the blood-brain barrier and stimulate production of NGF and BDNF. These proteins promote the growth, maintenance, and survival of neurons — directly building brain capacity over time.</div>
-                        </div>
-                        <div class="ing-detail-item">
-                            <div class="detail-label benefit">✦ Benefits</div>
-                            <div class="benefit-list">
-                                <span class="benefit-chip">Brain Neurogenesis</span>
-                                <span class="benefit-chip">Focus Depth</span>
-                                <span class="benefit-chip">Anti-Anxiety</span>
-                                <span class="benefit-chip">Long-term Cognition</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ── GROUP 2: ENERGY ── -->
-    <section class="group-section" id="energy">
-        <div class="group-header">
-            <div class="group-icon icon-energy">⚡</div>
-            <div class="group-title-wrap">
-                <div class="group-label label-energy">GROUP 02</div>
-                <div class="group-name">ENERGY COMPLEX</div>
-            </div>
-            <div class="group-count">3 INGREDIENTS</div>
-        </div>
-
-        <div class="ingredients-grid">
-
-            <!-- Caffeine from Guarana -->
+            <!-- CAFFEINE -->
             <div class="ing-card energy-card">
                 <div class="ing-img-wrap">
-                    <img src="guarana.jpg" alt="Guarana Caffeine"
+                    <img src="caffeine.jpg" alt="Caffeine"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">☕</div>
-                        <div class="ph-text">guarana.jpg</div>
+                    <div class="ing-placeholder ph-caffeine" style="display:none">
+                        <div class="ph-shimmer"></div>
+                        <div class="ph-orb orb-caffeine">☕</div>
+                        <div class="ph-label">Caffeine</div>
+                        <div class="ph-upload-hint">Upload caffeine.jpg</div>
                     </div>
                 </div>
                 <div class="ing-body">
                     <span class="ing-tag tag-energy">ENERGY</span>
-                    <div class="ing-name">CAFFEINE (GUARANA)</div>
-                    <div class="ing-latin">From: Paullinia cupana seed extract</div>
-                    <div class="ing-dosage">Typical dose: <span>50–100mg</span> slow-release</div>
-                    <div class="ing-desc">Unlike synthetic caffeine, guarana-sourced caffeine is naturally bound to tannins, causing a slower, more sustained release — delivering clean energy over 4–6 hours with no sudden crash.</div>
+                    <div class="ing-name">CAFFEINE</div>
+                    <div class="ing-latin">10 mg per patch</div>
+                    <div class="ing-dosage">Dose: <span>10 mg</span></div>
+                    <div class="ing-desc">A mild, controlled dose of caffeine designed for steady transdermal absorption — giving you a clean mental lift without the spike-and-crash of a full coffee or energy drink.</div>
                     <div class="ing-detail-row">
                         <div class="ing-detail-item">
                             <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Blocks adenosine receptors in the brain (adenosine causes sleepiness). This triggers dopamine and norepinephrine release, increasing alertness, reaction time, and physical performance without overstimulating the nervous system.</div>
+                            <div class="detail-text">Blocks adenosine receptors in the brain, reducing perceived fatigue. Triggers dopamine and norepinephrine release, improving alertness, mood, and reaction time.</div>
                         </div>
                         <div class="ing-detail-item">
                             <div class="detail-label benefit">✦ Benefits</div>
                             <div class="benefit-list">
-                                <span class="benefit-chip">Sustained Alertness</span>
+                                <span class="benefit-chip">Alertness</span>
                                 <span class="benefit-chip">No Crash</span>
                                 <span class="benefit-chip">Faster Reaction</span>
-                                <span class="benefit-chip">Fat Metabolism</span>
+                                <span class="benefit-chip">Mood Lift</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Taurine -->
+            <!-- TAURINE -->
             <div class="ing-card energy-card">
                 <div class="ing-img-wrap">
-                    <img src="taurine.jpg" alt="Taurine"
+                    <img src="Taurine.jpg" alt="Taurine"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">💪</div>
-                        <div class="ph-text">taurine.jpg</div>
+                    <div class="ing-placeholder ph-taurine" style="display:none">
+                        <div class="ph-shimmer"></div>
+                        <div class="ph-orb orb-taurine">💪</div>
+                        <div class="ph-label">Taurine</div>
+                        <div class="ph-upload-hint">Upload taurine.jpg</div>
                     </div>
                 </div>
                 <div class="ing-body">
                     <span class="ing-tag tag-energy">ENERGY</span>
                     <div class="ing-name">TAURINE</div>
                     <div class="ing-latin">Amino sulfonic acid (conditionally essential)</div>
-                    <div class="ing-dosage">Typical dose: <span>500–1000mg</span> per patch</div>
-                    <div class="ing-desc">One of the most abundant amino acids in the brain and heart. Often called the "wonder molecule" for its wide-ranging physiological benefits. Naturally found in meat, fish, and dairy.</div>
+                    <div class="ing-dosage">Amino Acid <span>Complex</span></div>
+                    <div class="ing-desc">One of the most abundant amino acids in the body — found naturally in muscle, brain, and heart tissue. Works synergistically with caffeine to smooth and extend its energizing effects.</div>
                     <div class="ing-detail-row">
                         <div class="ing-detail-item">
                             <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Regulates calcium signaling in cells, enhancing mitochondrial energy production. Acts as an osmoregulator, protecting cells from oxidative stress. In the brain, modulates GABA receptors to calm the nervous system while boosting physical endurance.</div>
+                            <div class="detail-text">Regulates calcium signaling in cells, enhancing mitochondrial energy output. Acts as an osmoregulator, protecting cells from oxidative stress. Modulates GABA receptors to calm overstimulation from caffeine.</div>
                         </div>
                         <div class="ing-detail-item">
                             <div class="detail-label benefit">✦ Benefits</div>
@@ -589,33 +571,71 @@
                 </div>
             </div>
 
-            <!-- Green Tea Extract -->
+            <!-- D-GLUCURONOLACTONE -->
             <div class="ing-card energy-card">
                 <div class="ing-img-wrap">
-                    <img src="greentea.jpg" alt="Green Tea Extract"
+                    <img src="D-Glucuronolactone.jpg" alt="D-Glucuronolactone"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🍃</div>
-                        <div class="ph-text">greentea.jpg</div>
+                    <div class="ing-placeholder ph-glucuro" style="display:none">
+                        <div class="ph-shimmer"></div>
+                        <div class="ph-orb orb-glucuro">🔬</div>
+                        <div class="ph-label">Glucuronolactone</div>
+                        <div class="ph-upload-hint">Upload glucuronolactone.jpg</div>
+                    </div>
+                </div>
+                <div class="ing-body">
+                    <span class="ing-tag tag-energy">ENERGY</span>
+                    <div class="ing-name">D-GLUCURONOLACTONE</div>
+                    <div class="ing-latin">Natural metabolite of glucose</div>
+                    <div class="ing-dosage">Detox <span>Compound</span></div>
+                    <div class="ing-desc">A naturally occurring compound derived from glucose metabolism in the liver. A classic ingredient found in premium energy formulations for its detoxifying and stamina-supporting properties.</div>
+                    <div class="ing-detail-row">
+                        <div class="ing-detail-item">
+                            <div class="detail-label mech">⚙ Mechanism</div>
+                            <div class="detail-text">Supports glucuronidation — a key liver detox pathway — helping the body clear metabolic waste. May reduce fatigue byproducts in muscle tissue and support glycogen utilization for sustained output.</div>
+                        </div>
+                        <div class="ing-detail-item">
+                            <div class="detail-label benefit">✦ Benefits</div>
+                            <div class="benefit-list">
+                                <span class="benefit-chip">Detox Support</span>
+                                <span class="benefit-chip">Stamina</span>
+                                <span class="benefit-chip">Mental Clarity</span>
+                                <span class="benefit-chip">Synergy Boost</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GREEN TEA EXTRACT -->
+            <div class="ing-card energy-card">
+                <div class="ing-img-wrap">
+                    <img src="Green Tea Extract (Camellia Sinensis).jpg" alt="Green Tea Extract"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="ing-placeholder ph-greentea" style="display:none">
+                        <div class="ph-shimmer"></div>
+                        <div class="ph-orb orb-greentea">🍃</div>
+                        <div class="ph-label">Green Tea</div>
+                        <div class="ph-upload-hint">Upload greentea.jpg</div>
                     </div>
                 </div>
                 <div class="ing-body">
                     <span class="ing-tag tag-energy">ENERGY</span>
                     <div class="ing-name">GREEN TEA EXTRACT</div>
-                    <div class="ing-latin">From: Camellia sinensis (standardized 50% EGCG)</div>
-                    <div class="ing-dosage">Typical dose: <span>200–400mg</span> extract</div>
-                    <div class="ing-desc">Concentrated extract of green tea, standardized to 50% EGCG (Epigallocatechin gallate) — the most potent catechin and one of nature's most studied antioxidants.</div>
+                    <div class="ing-latin">From: Camellia sinensis (Camellia Sinensis)</div>
+                    <div class="ing-dosage">Extract <span>Standardized</span></div>
+                    <div class="ing-desc">Concentrated extract of green tea, rich in EGCG catechins — one of nature's most studied antioxidants. Provides clean, plant-based energy alongside caffeine for a powerful synergistic focus stack.</div>
                     <div class="ing-detail-row">
                         <div class="ing-detail-item">
                             <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">EGCG inhibits COMT enzyme, prolonging norepinephrine activity in the brain and fat cells. This mildly increases thermogenesis and mental energy. Combined with caffeine and L-theanine, it creates a powerful synergistic focus stack.</div>
+                            <div class="detail-text">EGCG inhibits the COMT enzyme, prolonging norepinephrine activity in the brain and fat cells. This mildly increases thermogenesis and mental energy, amplifying the effect of caffeine without adding more stimulant.</div>
                         </div>
                         <div class="ing-detail-item">
                             <div class="detail-label benefit">✦ Benefits</div>
                             <div class="benefit-list">
                                 <span class="benefit-chip">Clean Energy</span>
                                 <span class="benefit-chip">Antioxidant</span>
-                                <span class="benefit-chip">Metabolism Boost</span>
+                                <span class="benefit-chip">Metabolism</span>
                                 <span class="benefit-chip">Anti-Inflammatory</span>
                             </div>
                         </div>
@@ -626,149 +646,118 @@
         </div>
     </section>
 
-    <!-- ── GROUP 3: VITAMINS ── -->
+    <!-- ── GROUP 2: VITAMIN COMPLEX ── -->
     <section class="group-section" id="vitamins">
         <div class="group-header">
             <div class="group-icon icon-vit">💊</div>
             <div class="group-title-wrap">
-                <div class="group-label label-vit">GROUP 03</div>
+                <div class="group-label label-vit">GROUP 02</div>
                 <div class="group-name">VITAMIN COMPLEX</div>
             </div>
-            <div class="group-count">4 INGREDIENTS</div>
+            <div class="group-count">3 INGREDIENTS</div>
         </div>
 
-        <div class="ingredients-grid">
+        <div class="ingredients-grid three">
 
-            <!-- Vitamin B Complex -->
+            <!-- VITAMIN B3 -->
             <div class="ing-card vit-card">
                 <div class="ing-img-wrap">
-                    <img src="vitaminb.jpg" alt="Vitamin B Complex"
+                    <img src="Vitamin B3 (Nicotinamide).jpg" alt="Vitamin B3"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🔆</div>
-                        <div class="ph-text">vitaminb.jpg</div>
+                    <div class="ing-placeholder ph-vitb3" style="display:none">
+                        <div class="ph-shimmer"></div>
+                        <div class="ph-orb orb-vitb3">🔆</div>
+                        <div class="ph-label">Vitamin B3</div>
+                        <div class="ph-upload-hint">Upload vitb3.jpg</div>
                     </div>
                 </div>
                 <div class="ing-body">
                     <span class="ing-tag tag-vit">VITAMINS</span>
-                    <div class="ing-name">VITAMIN B COMPLEX</div>
-                    <div class="ing-latin">B1, B2, B3, B5, B6, B9, B12</div>
-                    <div class="ing-dosage">Typical dose: <span>100% RDV</span> per patch</div>
-                    <div class="ing-desc">The complete B-vitamin family, essential for converting food into brain fuel. Deficiency in any B vitamin directly impairs cognitive function, mood, and energy production.</div>
+                    <div class="ing-name">VITAMIN B3</div>
+                    <div class="ing-latin">Nicotinamide (Niacin)</div>
+                    <div class="ing-dosage">Form: <span>Nicotinamide</span></div>
+                    <div class="ing-desc">Also known as Niacin — a cornerstone of energy metabolism. In its nicotinamide form, it delivers all the cellular benefits without the flush sensation of regular niacin.</div>
                     <div class="ing-detail-row">
                         <div class="ing-detail-item">
                             <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">B vitamins act as coenzymes in ATP (cellular energy) synthesis. B6, B9 & B12 regulate homocysteine metabolism — high homocysteine is linked to brain fog and poor memory. B12 is critical for myelin sheath maintenance, which speeds nerve signal transmission.</div>
+                            <div class="detail-text">Essential for NAD+ and NADH synthesis — the electron carriers powering every cell's energy production (ATP). Also supports DNA repair and regulates stress response pathways.</div>
                         </div>
                         <div class="ing-detail-item">
                             <div class="detail-label benefit">✦ Benefits</div>
                             <div class="benefit-list">
                                 <span class="benefit-chip">Energy Metabolism</span>
-                                <span class="benefit-chip">Nerve Function</span>
-                                <span class="benefit-chip">Mood Regulation</span>
-                                <span class="benefit-chip">Red Blood Cell Production</span>
+                                <span class="benefit-chip">NAD+ Boost</span>
+                                <span class="benefit-chip">Brain Function</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Magnesium L-Threonate -->
+            <!-- VITAMIN B5 -->
             <div class="ing-card vit-card">
                 <div class="ing-img-wrap">
-                    <img src="magnesium.jpg" alt="Magnesium"
+                    <img src="Vitamin B5 (D-Calcium Pantothenate).jpg" alt="Vitamin B5"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">💎</div>
-                        <div class="ph-text">magnesium.jpg</div>
+                    <div class="ing-placeholder ph-vitb5" style="display:none">
+                        <div class="ph-shimmer"></div>
+                        <div class="ph-orb orb-vitb5">🌸</div>
+                        <div class="ph-label">Vitamin B5</div>
+                        <div class="ph-upload-hint">Upload vitb5.jpg</div>
                     </div>
                 </div>
                 <div class="ing-body">
                     <span class="ing-tag tag-vit">VITAMINS</span>
-                    <div class="ing-name">MAGNESIUM L-THREONATE</div>
-                    <div class="ing-latin">Magtein® — MIT-developed brain magnesium</div>
-                    <div class="ing-dosage">Typical dose: <span>144mg</span> elemental Mg</div>
-                    <div class="ing-desc">The only form of magnesium proven to cross the blood-brain barrier efficiently. Developed by MIT researchers specifically to elevate brain magnesium levels, which decline with stress and aging.</div>
+                    <div class="ing-name">VITAMIN B5</div>
+                    <div class="ing-latin">D-Calcium Pantothenate</div>
+                    <div class="ing-dosage">Form: <span>Calcium Pantothenate</span></div>
+                    <div class="ing-desc">Pantothenic acid — the "anti-stress vitamin." Essential for adrenal gland function and the production of coenzyme A, which is central to fatty acid metabolism and energy release.</div>
                     <div class="ing-detail-row">
                         <div class="ing-detail-item">
                             <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Increases synaptic density in the hippocampus — the brain's memory center. Regulates NMDA receptors involved in learning and memory formation. Also controls cortisol response, reducing the cognitive impact of stress.</div>
+                            <div class="detail-text">Precursor to Coenzyme A (CoA) — required for converting carbohydrates, fats, and proteins into usable energy (acetyl-CoA). Supports adrenal hormone synthesis to regulate the body's stress response.</div>
                         </div>
                         <div class="ing-detail-item">
                             <div class="detail-label benefit">✦ Benefits</div>
                             <div class="benefit-list">
-                                <span class="benefit-chip">Memory Formation</span>
+                                <span class="benefit-chip">Adrenal Support</span>
+                                <span class="benefit-chip">Fat Metabolism</span>
                                 <span class="benefit-chip">Stress Resilience</span>
-                                <span class="benefit-chip">Deep Sleep</span>
-                                <span class="benefit-chip">Synaptic Density</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- N-Acetyl Carnitine -->
+            <!-- VITAMIN B6 -->
             <div class="ing-card vit-card">
                 <div class="ing-img-wrap">
-                    <img src="carnitine.jpg" alt="N-Acetyl Carnitine"
+                    <img src="Vitamin B6 (Pyridoxine Hydrochloride).jpg" alt="Vitamin B6"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🔋</div>
-                        <div class="ph-text">carnitine.jpg</div>
+                    <div class="ing-placeholder ph-vitb6" style="display:none">
+                        <div class="ph-shimmer"></div>
+                        <div class="ph-orb orb-vitb6">🔮</div>
+                        <div class="ph-label">Vitamin B6</div>
+                        <div class="ph-upload-hint">Upload vitb6.jpg</div>
                     </div>
                 </div>
                 <div class="ing-body">
                     <span class="ing-tag tag-vit">VITAMINS</span>
-                    <div class="ing-name">N-ACETYL CARNITINE</div>
-                    <div class="ing-latin">ALCAR — Acetylated form of L-Carnitine</div>
-                    <div class="ing-dosage">Typical dose: <span>500–1000mg</span> per patch</div>
-                    <div class="ing-desc">The acetylated form of L-Carnitine that crosses the blood-brain barrier. Acts as both a cellular energy transporter and a precursor to acetylcholine — the brain's primary learning neurotransmitter.</div>
+                    <div class="ing-name">VITAMIN B6</div>
+                    <div class="ing-latin">Pyridoxine Hydrochloride</div>
+                    <div class="ing-dosage">Form: <span>Pyridoxine HCl</span></div>
+                    <div class="ing-desc">The neurotransmitter vitamin. B6 is involved in over 100 enzymatic reactions in the body and is critical for synthesizing serotonin, dopamine, and GABA — your feel-good brain chemicals.</div>
                     <div class="ing-detail-row">
                         <div class="ing-detail-item">
                             <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Shuttles long-chain fatty acids into mitochondria for ATP energy production. The acetyl group donates to acetyl-CoA, directly boosting acetylcholine synthesis. This dual action powers both cellular metabolism and neurotransmitter production simultaneously.</div>
+                            <div class="detail-text">Acts as a coenzyme in the synthesis of serotonin (from tryptophan), dopamine (from L-DOPA), and GABA. Regulates homocysteine, protecting brain blood vessels. Essential for red blood cell production carrying oxygen to the brain.</div>
                         </div>
                         <div class="ing-detail-item">
                             <div class="detail-label benefit">✦ Benefits</div>
                             <div class="benefit-list">
-                                <span class="benefit-chip">Brain Energy</span>
-                                <span class="benefit-chip">Acetylcholine</span>
-                                <span class="benefit-chip">Fat Burning</span>
-                                <span class="benefit-chip">Mental Endurance</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Red Ginseng -->
-            <div class="ing-card vit-card">
-                <div class="ing-img-wrap">
-                    <img src="ginseng.jpg" alt="Red Ginseng"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="ing-img-placeholder" style="display:none">
-                        <div class="ph-icon">🌱</div>
-                        <div class="ph-text">ginseng.jpg</div>
-                    </div>
-                </div>
-                <div class="ing-body">
-                    <span class="ing-tag tag-vit">VITAMINS</span>
-                    <div class="ing-name">RED GINSENG</div>
-                    <div class="ing-latin">From: Panax ginseng C.A. Meyer (6-year root)</div>
-                    <div class="ing-dosage">Typical dose: <span>200–400mg</span> standardized extract</div>
-                    <div class="ing-desc">Korean Red Ginseng — steamed and dried for 9 times to maximize ginsenoside concentration. Used for over 2,000 years in East Asian medicine as the ultimate adaptogen for resilience and vitality.</div>
-                    <div class="ing-detail-row">
-                        <div class="ing-detail-item">
-                            <div class="detail-label mech">⚙ Mechanism</div>
-                            <div class="detail-text">Ginsenosides Rg1 and Rb1 modulate the HPA axis, regulating cortisol and adrenaline response to stress. Enhances nitric oxide production for better circulation. Also activates AMPK pathway — the master regulator of cellular energy balance.</div>
-                        </div>
-                        <div class="ing-detail-item">
-                            <div class="detail-label benefit">✦ Benefits</div>
-                            <div class="benefit-list">
-                                <span class="benefit-chip">Stress Adaptation</span>
-                                <span class="benefit-chip">Immune Support</span>
-                                <span class="benefit-chip">Physical Stamina</span>
-                                <span class="benefit-chip">Hormonal Balance</span>
+                                <span class="benefit-chip">Mood Regulation</span>
+                                <span class="benefit-chip">Serotonin</span>
+                                <span class="benefit-chip">Brain Health</span>
                             </div>
                         </div>
                     </div>
@@ -789,7 +778,7 @@
 
 </main>
 
-<!-- FOOTER MINI -->
+<!-- FOOTER -->
 <footer class="footer-mini">
     <div class="footer-mini-logo">VIBE<span>+</span></div>
     <p>Product of Vietnam — TENNICHE CO., LTD — License 456/2024/ATTP-XNCB</p>
@@ -797,18 +786,17 @@
 </footer>
 
 <script>
-    // Smooth scroll to group
-    function scrollTo(id) {
+    function scrollToSection(id, btn) {
         document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+        btn.classList.add('active');
     }
 
     // Auto-highlight active tab on scroll
-    const sections = ['focus','energy','vitamins'];
+    const sections = ['energy','vitamins'];
     const tabs = document.querySelectorAll('.tab-btn');
     window.addEventListener('scroll', () => {
-        let current = 'focus';
+        let current = 'energy';
         sections.forEach(id => {
             const el = document.getElementById(id);
             if (el && window.scrollY >= el.offsetTop - 200) current = id;
@@ -826,12 +814,12 @@
                 e.target.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.06 });
 
     document.querySelectorAll('.ing-card').forEach((el, i) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(28px)';
-        el.style.transition = `opacity 0.55s ease ${i * 0.07}s, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${i * 0.07}s`;
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s`;
         observer.observe(el);
     });
 </script>
